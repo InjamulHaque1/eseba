@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extra-styles %}
+<link rel="stylesheet" href="{% static 'css/__home.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="content">
+    <div class="text">
+      <h1>Welcome to <span class="eseba">E-Seba</span></h1>
+      <p>"Explore our online healthcare hub, featuring doctor appointments, medical accessories, emergency services, and hospital blood supplies."</p>
+    </div>
+    <div class="image">
+      <img src="{% static 'image/happy.jpg' %}" alt="E-Seba Image">
+    </div>
+  </div>
+</div>
+{% endblock %}
+

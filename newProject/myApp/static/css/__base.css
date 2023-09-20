@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+body {
+    font-family: 'Mooli', sans-serif;
+    background: linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    }
+
+.topnav {
+    position: sticky;
+    top: 0;
+    background-image: linear-gradient(to right, #008dff, #0076fb, #005df4, #0041ea, #001adb);
+    overflow: auto;
+    box-shadow: 0 4px 20px rgba(0, 83, 206, 0.4);
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 25px 16px;
+    transition: transform 0.2s;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    font-weight: 800;
+    background-color: #5de5d7;
+    color: #000000;
+    transform: scale(1.05);
+}
+
+footer {
+    color: #fff;
+    text-align: center;
+    
+}
+
+.footer-content {
+    background: #111;
+    color: #fff;
+    padding: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 100px;
+    height: auto;
+}
+.logo .eseba{
+    position: relative;
+    top: -25px;
+    margin: 0px auto;
+    font-size: 70px;
+    font-weight: 900;
+    color: #1F8ACC;
+}
+
+.contact-info {
+    text-align: right;
+}
+
+.contact-info h3 {
+    color: aqua;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.contact-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-info ul li {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.contact-info ul li strong {
+    font-weight: bold;
+}
+
+.footer-bottom {
+    background: #000;
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+    margin: 0; 
+}
+
+.footer-bottom p a {
+    color: #44bae8;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.footer-bottom span {
+    text-transform: uppercase;
+    opacity: .4;
+    font-weight: 200;
+}
+
+.footer-menu {
+    padding: 15px;
+    float: right;
+}
+
+.footer-menu ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-menu ul li {
+    padding-right: 10px;
+    display: block;
+}
+
+.footer-menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    border: 1.1px solid white;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.footer-menu ul li a i {
+    font-size: 1.1rem;
+    width: 20px;
+    transition: color .4s ease;
+}
+
+.footer-menu ul li a:hover {
+    color: aqua;
+}
+
+@media (max-width: 500px) {
+    .footer-menu ul {
+        display: flex;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-around;
+  align-items: flex-start;
+  min-height: 80vh;
+  align-content: flex-start;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    height: 500px;
+    width: 500px;
+    padding: 20px;
+  }
+  
+  .text p {
+    text-align: justify;
+    font-size: 25px;
+  }
+  .text h1{
+    font-size: 40px;
+  }
+  .eseba {
+    font-size: 60px;
+    color: #1F8ACC;
+  }
+  .image{
+    max-width:100%;
+  }
+  .image img{
+    max-width: 100%;
+    border-radius: 50%;
+  }

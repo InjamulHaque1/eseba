@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'image/favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/__base.css' %}" />
+
+    {% block extra-styles %} {% endblock %}
+
+    <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+
+    <div class="topnav">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'products' %}">Products</a>
+        <a href="{% url 'appointment' %}">Appointment</a>
+        <a href="{% url 'emergency' %}">Emergency</a>
+        <a href="{% url 'about' %}">About</a>
+    </div>
+        
+        {% block content %}{% endblock %}
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                <img src="{% static 'image/favicon.png' %}">
+                <span class="eseba">E-Seba</span>
+            </div>
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <ul>
+                    <li><strong>Address:</strong> Dhaka, Bangladesh</li>
+                    <li><strong>Email:</strong> eseba@gmail.com</li>
+                    <li><strong>Phone:</strong> +8801517037849</li>
+                    <li>+8801518037849</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2023 NewDevelopers</p>
+            <div class="footer-menu">
+                <ul class="f-menu">
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
