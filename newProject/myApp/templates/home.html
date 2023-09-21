@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block extra-styles %}
 <link rel="stylesheet" href="{% static 'css/__home.css' %}" />
 {% endblock %}
 
 {% block content %}
 <div class="container">
-  <div class="content">
+  <div class="top-content">
     <div class="text">
       <h1>Welcome to <span class="eseba">E-Seba</span></h1>
       <p>"Explore our online healthcare hub, featuring doctor appointments, medical accessories, emergency services, and hospital blood supplies."</p>
@@ -17,6 +16,28 @@
       <img src="{% static 'image/happy.jpg' %}" alt="E-Seba Image">
     </div>
   </div>
+
+  <h2 class="offer-title">We offer</h2>
+  
+  <div class="cards-container">
+    <div class="card">
+      <h2>Doctor Appointments</h2>
+      <p>Find and book appointments with qualified doctors.</p>
+      <a href="{% url 'appointment' %}" class="card-button">Learn more</a>
+    </div>
+  
+    <div class="card">
+      <h2>Medical Accessories</h2>
+      <p>Shop for a wide range of medical accessories and supplies.</p>
+      <a href="{% url 'products' %}" class="card-button">Learn more</a>
+    </div>
+  
+    <div class="card">
+      <h2>Emergency Services</h2>
+      <p>Access emergency medical services 24/7.</p>
+      <a href="{% url 'emergency' %}" class="card-button">Learn more</a>
+    </div>
+  </div>
+  
 </div>
 {% endblock %}
-

@@ -1,43 +1,116 @@
 .container {
   display: flex;
-  flex-grow: 1;
-  justify-content: space-around;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   min-height: 80vh;
-  align-content: flex-start;
-  }
+  text-align: center;
+  background-image: url('../image/background.png'); /* Replace with your background image path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  background-attachment: fixed;
+}
+.top-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+.text { 
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 500px;
+  width: 800px;
+  padding: 20px;
+  justify-content: center;
+}
 
-  .content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
+.text p {
+  text-align: justify;
+  font-size: 25px;
+  color: #fff; /* Set text color to white for better visibility */
+}
 
-  .text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    height: 500px;
-    width: 500px;
-    padding: 20px;
-  }
-  
-  .text p {
-    text-align: justify;
-    font-size: 25px;
-  }
-  .text h1{
-    font-size: 40px;
-  }
-  .eseba {
-    font-size: 60px;
-    color: #1F8ACC;
-  }
-  .image{
-    max-width:100%;
-  }
-  .image img{
-    max-width: 100%;
-    border-radius: 50%;
-  }
+.text h1 {
+  font-size: 40px;
+  color: #fff; /* Set text color to white for better visibility */
+}
+
+.eseba {
+  font-size: 80px;
+  color: #1c9eef;
+}
+
+.image {
+  max-width: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+.image img {
+  max-width: 100%;
+}
+
+.offer-title {
+  margin-bottom: 50px;
+  font-size: 62px;
+  margin-top: 20px;
+}
+
+.cards-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 40px;
+  margin-bottom: 100px;
+}
+.card {
+  backdrop-filter: blur(10px); 
+  background-color: rgba(103, 232, 255, 0.466); 
+  border-radius: 10px;
+  padding: 50px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-button {
+  margin: 30px auto 0px;
+  padding: 20px;
+  background-color: rgba(255, 222, 233, 0.7); /* Use an RGBA color with opacity for the button's background */
+  width: 50%;
+  align-content: center;
+  color: #000; /* Set text color for the button */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.card-button:hover {
+  background-color: rgba(15, 115, 186, 0.555); /* Change background color with opacity on hover */
+  color: #fff; /* Change text color on hover */
+  font-weight: bold;
+}
+
+.card h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.card p {
+  font-size: 16px;
+  padding: 20px 0px;
+  color: #333;
+}
