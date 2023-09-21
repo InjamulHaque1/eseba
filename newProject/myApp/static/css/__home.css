@@ -74,7 +74,7 @@
 }
 .card {
   backdrop-filter: blur(10px); 
-  background-color: rgba(103, 232, 255, 0.466); 
+  background-color: rgba(119, 235, 255, 0.538); 
   border-radius: 10px;
   padding: 50px;
   width: 100%;
@@ -96,12 +96,14 @@
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.2s, color 0.2s;
+  transition: transform 0.2s;
 }
 
 .card-button:hover {
-  background-color: rgba(15, 115, 186, 0.555); /* Change background color with opacity on hover */
+  background-image: radial-gradient( circle 975px at 2.6% 48.3%,  rgb(0, 12, 183) 0%, rgba(95,184,224,1) 99.7% );
   color: #fff; /* Change text color on hover */
   font-weight: bold;
+  transform: scale(1.2);
 }
 
 .card h2 {
@@ -114,3 +116,5 @@
   padding: 20px 0px;
   color: #333;
 }
+
+
