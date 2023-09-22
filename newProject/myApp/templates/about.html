@@ -2,10 +2,55 @@
 {% load static %}
 {% block title %}About Us{% endblock %}
 
-{% block extrastyles %}
-    <link rel="stylesheet" href="{% static 'css/__about.css' %}">
+{% block extra-styles %}
+<link rel="stylesheet" href="{% static 'css/__about.css' %}">
+
 {% endblock %}
 
 {% block content %}
-    <!-- About page content here -->
+<div class="about-us">
+  <h2>Our Team</h2>
+  <div class="team-member">
+    <img src="{% static 'image/favicon.png' %}" alt="Team Member 1">
+    <h3>John Doe</h3>
+    <p>Lead Developer</p>
+  </div>
+  <div class="team-member">
+    <img src="{% static 'image/favicon.png' %}" alt="Team Member 2">
+    <h3>Jane Smith</h3>
+    <p>UX Designer</p>
+  </div>
+  <div class="team-member">
+    <img src="{% static 'image/favicon.png' %}" alt="Team Member 3">
+    <h3>Mike Johnson</h3>
+    <p>Marketing Specialist</p>
+  </div>
+
+  <div class="project-description">
+    <h3>About Us</h3>
+    <p>Our E-Seba team is a dedicated and diverse group of experts united by a shared mission: to revolutionize
+      healthcare access in Bangladesh. With a range of skills, from development to design and marketing, we've created a
+      user-friendly platform that offers convenient, efficient, and transparent healthcare solutions. Our passion drives
+      us to serve our community's needs relentlessly.</p>
+
+    <h3>Motivation behind our work</h3>
+    <p>Bangladesh, a nation grappling with poverty and an ailing healthcare system, has provided the impetus for our
+      endeavor. In critical situations, individuals often face the daunting task of navigating a labyrinth of hospitals,
+      leading to prolonged delays. Our solution empowers users with real-time information, enabling them to pinpoint
+      nearby ambulances, ascertain ICU availability, and determine blood availability instantly. Furthermore, E-Seba
+      addresses fundamental healthcare needs, including medical appointments, acquisition of medical accessories, and
+      medication procurement. Our resolve to alleviate the burdens of an inefficient healthcare system has been a
+      driving force behind this initiative.</p>
+
+    <h3>Impact on our lives</h3>
+    <p>Our initiative, E-Seba, is a catalyst for transformative impact. It champions convenience, offering seamless
+      access to medical care and products, particularly benefiting those with mobility constraints and remote residents.
+      Through online appointments and prescriptions, we deliver swift, efficient healthcare, reducing waiting times. In
+      emergencies, we provide immediate access to critical resources like ambulances, blood donations, and ICUs. Our
+      digital record management streamlines patient care while minimizing paperwork. Geographical barriers dissolve,
+      ensuring equitable healthcare access for underserved areas. We prioritize health education, empowering individuals
+      with vital information. Transparency in transactions and treatment plans builds trust, elevating the healthcare
+      experience for all..</p>
+  </div>
+</div>
 {% endblock %}
