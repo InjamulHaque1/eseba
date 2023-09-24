@@ -1,0 +1,63 @@
+<!-- cart.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-styles %}
+<link rel="stylesheet" href="{% static 'css/__cart.css' %}" />
+{% endblock %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Your Shopping Cart</h1>
+
+  {% if cart_items %}
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+          <tr>
+            <td>{{ item.accessory.p_name }}</td>
+            <td>${{ item.accessory.p_cost }}</td>
+            <td>
+              <input
+                type="number"
+                name="quantity"
+                value="{{ item.quantity }}"
+                min="1"
+                data-product-id="{{ item.accessory.id }}"
+              />
+            </td>
+            <td>${{ item.quantity * item.accessory.p_cost }}</td>
+            <td>
+              <a href="{% url 'remove_from_cart' item.accessory.id %}">
+                Remove
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="cart-total">
+      <strong>Total: ${{ total_cost }}</strong>
+    </div>
+
+    <div class="checkout-button">
+      <a href="#">Checkout</a>
+    </div>
+  {% else %}
+    <p>Your shopping cart is empty.</p>
+  {% endif %}
+</div>
+{% endblock %}

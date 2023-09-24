@@ -1,0 +1,52 @@
+<!-- register.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-styles %}
+<link rel="stylesheet" href="{% static 'css/__register.css' %}" />
+{% endblock %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="register-container">
+        <h2>Register</h2>
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="u_name">Name</label>
+            <input type="text" name="u_name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="u_email">Email</label>
+            <input type="email" name="u_email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="u_password">Password</label>
+            <input type="password" name="u_password" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="u_age">Age</label>
+            <input type="number" name="u_age" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="u_address">Address</label>
+            <input type="text" name="u_address" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="u_mobile">Mobile</label>
+            <input type="text" name="u_mobile" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Gender:</label>
+              <input type="radio" name="u_gender" value="Male" id="male" required>
+              <label for="male">Male</label>
+              <input type="radio" name="u_gender" value="Female" id="female" required>
+              <label for="female">Female</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>      
+</div>
+{% endblock %}

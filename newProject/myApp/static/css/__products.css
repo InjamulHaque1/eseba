@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+.search-container {
+    margin: 20px 0px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container form {
+    font-family: 'Mooli', sans-serif;
+    display: flex;
+    align-items: center; 
+}
+
+.search-container input[type="text"] {
+    padding: 15px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.search-container :focus-visible{
+    overflow: hidden;
+    outline: none;
+    border: none;
+}
+
+.search-container button {
+    padding: 15px 30px; 
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    min-height: 70vh;
+    flex-wrap: wrap;
+    padding: 20px; 
+}
+
+.product-card {
+    max-width: 280px;
+    height: 400px;
+    margin: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative; /* Added */
+}
+
+.product-actions {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.product-actions form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-actions label {
+    margin-bottom: 5px;
+}
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.product-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+}
+
+.product-category, .product-cost, .product-count, .product-vendor {
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+/* Add this CSS to your existing CSS or create a new CSS file */
+.product-card form button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #4CAF50; /* Green color, you can change this to your preferred color */
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-card form button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+.go-to-cart-button {
+    text-align: center;
+    margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.go-to-cart-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.go-to-cart-button a:hover {
+    background-color: #0056b3;
+}

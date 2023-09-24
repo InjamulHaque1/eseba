@@ -42,6 +42,30 @@ body {
     transform: scale(1.3);
     overflow: hidden;
 }
+#user-links {
+    float: right;
+    margin-right: 20px; /* Adjust the margin as needed for spacing */
+}
+
+.user-link {
+    color: #ffffff;
+    text-align: center;
+    padding: 25px 16px;
+    margin: 0px 5px;
+    transition: transform 0.3s;
+    text-decoration: none;
+}
+
+.user-link:hover {
+    font-weight: 800;
+    background-color: rgba(71, 181, 255, 0.463);
+    border-radius: 2px;
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    transform: scale(1.3);
+    overflow: hidden;
+}
+
 
 footer {
     color: #fff;

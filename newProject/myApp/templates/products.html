@@ -1,12 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Product Catalogue{% endblock %}
 
 {% block extra-styles %}
-    <link rel="stylesheet" href="{% static 'css/__products.css' %}">
+<link rel="stylesheet" href="{% static 'css/__products.css' %}" />
 {% endblock %}
 
+{% block title %}Product Catalogue{% endblock %}
+
 {% block content %}
-    <!-- About page content here -->
-    <h1>This is products page</h1>
+<div class="search-container">
+    <form id="search-form">
+        <input type="text" id="search-input" placeholder="Search products...">
+        <button type="button" id="search-button">Search</button>
+    </form>
+</div>
+
+<div class="container" id="product-container">
+    {% for product in products %}
+    <div class="product-card">
+        <img src="{% static 'image/'|add:product.p_image.url %}" alt="Product Image" class="product-image">
+        <h2 class="product-title">{{ product.p_name }}</h2>
+        <p class="product-cost"><strong>Cost:</strong> {{ product.p_cost }} tk</p>
+        <p class="product-count"><strong>In stock:</strong> {{ product.p_count }}</p>
+        <p class="product-vendor"><strong>Vendor:</strong> {{ product.v_name }}</p>
+        
+        <div class="product-actions">
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                <label for="quantity">Quantity:</label>
+                <input type="number" name="quantity" id="quantity" value="0" min="0" max="10">
+                <button type="submit">Add to Cart</button>
+            </form>
+        </div>
+    </div>    
+    {% endfor %}
+</div>
+
+<!-- Button to go to the cart page -->
+<div class="go-to-cart-button">
+    <a href="{% url 'cart' %}">Go to Cart</a>
+</div>
 {% endblock %}

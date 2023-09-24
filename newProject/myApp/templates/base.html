@@ -19,6 +19,12 @@
         <a href="{% url 'appointment' %}">Appointment</a>
         <a href="{% url 'emergency' %}">Emergency</a>
         <a href="{% url 'about' %}">About</a>
+
+        <div id="user-links">
+            <a href="{% url 'login' %}" class="user-link">Login</a>
+            <a href="{% url 'register' %}" class="user-link">Register</a>
+        </div>
+        
     </div>
         
         {% block content %}{% endblock %}
