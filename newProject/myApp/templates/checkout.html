@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-styles %}
+<!-- Add any additional CSS styles for the checkout page here -->
+{% endblock %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Checkout</h1>
+
+  {% if bill_items %}
+    <table class="bill-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Item Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in bill_items %}
+          <tr>
+            <td>{{ item.product.p_name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.item_cost }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="total-cost">
+      <strong>Total Cost: ${{ total_cost }}</strong>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

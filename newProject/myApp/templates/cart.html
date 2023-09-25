@@ -1,5 +1,3 @@
-<!-- cart.html -->
-
 {% extends 'base.html' %}
 {% load static %}
 
@@ -29,20 +27,24 @@
           <tr>
             <td>{{ item.accessory.p_name }}</td>
             <td>${{ item.accessory.p_cost }}</td>
-            <td>
-              <input
-                type="number"
-                name="quantity"
-                value="{{ item.quantity }}"
-                min="1"
-                data-product-id="{{ item.accessory.id }}"
-              />
+            <td class="cart-actions">
+              <form method="post" action="{% url 'update_cart' item.accessory.id %}">
+                {% csrf_token %}
+                <input
+                  type="number"
+                  name="quantity"
+                  value="{{ item.quantity }}"
+                  min="1"
+                />
+                <button type="submit" class="update-button">Update</button>
+              </form>
             </td>
-            <td>${{ item.quantity * item.accessory.p_cost }}</td>
-            <td>
-              <a href="{% url 'remove_from_cart' item.accessory.id %}">
-                Remove
-              </a>
+            <td>${{ item.total_cost }}</td>
+            <td class="cart-actions">
+              <form method="post" action="{% url 'remove_from_cart' item.accessory.id %}">
+                {% csrf_token %}
+                <button type="submit" class="remove-button">Remove</button>
+              </form>
             </td>
           </tr>
         {% endfor %}

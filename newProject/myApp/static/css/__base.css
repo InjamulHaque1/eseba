@@ -78,7 +78,6 @@ body {
     margin-right: 10px;
     color: #fff;
     font-weight: bold;
-    text-transform: uppercase;
 }
 .message-container {
     position: fixed;
@@ -98,7 +97,7 @@ body {
 }
 
 .message {
-    font-size: 30px;
+    font-size: 40px;
     margin: 0;
     padding: 10px 0;
     display: flex;

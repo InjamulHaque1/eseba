@@ -1,60 +1,91 @@
 /* cart.css */
 
 .container {
-    margin: 20px;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .cart-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  .cart-table th,
-  .cart-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .cart-table th {
-    background-color: #f2f2f2;
-  }
-  
-  .cart-table input[type="number"] {
-    width: 40px;
-    padding: 5px;
-    text-align: center;
-  }
-  
-  .cart-total {
-    margin-top: 20px;
-    text-align: right;
-  }
-  
-  .checkout-button a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-  
-  .checkout-button a:hover {
-    background-color: #0056b3;
-  }
-  
-  p {
-    font-size: 18px;
-  }
-  
-  /* Add more CSS styling as needed */
-  
+  margin: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-table th {
+  background-color: #f2f2f2;
+}
+
+.cart-table input[type="number"] {
+  width: 40px;
+  padding: 5px;
+  text-align: center;
+}
+
+.cart-total {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.checkout-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.checkout-button a:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for the "Remove" and "Update" buttons */
+.cart-table .cart-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-table .cart-actions button {
+  padding: 5px 10px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cart-table .cart-actions button.remove-button {
+  background-color: #dc3545; /* Red color for "Remove" button */
+}
+
+.cart-table .cart-actions button.update-button {
+  background-color: #28a745; /* Green color for "Update" button */
+}
+
+.cart-table .cart-actions button:hover {
+  background-color: #c82333; /* Darker red on hover for "Remove" button */
+}
+
+.cart-table .cart-actions button.update-button:hover {
+  background-color: #218838; /* Darker green on hover for "Update" button */
+}
+
+p {
+  font-size: 18px;
+}
+
+/* Add more CSS styling as needed */
