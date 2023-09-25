@@ -12,18 +12,18 @@
 <div class="container">
     <div class="login-container">
         <h2>Login</h2>
-        <form method="post">
+        <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
           <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" class="form-control" required>
+              <label for="u_name">Username</label>
+              <input type="text" name="u_name" id="u_name" class="form-control" required>
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" class="form-control" required>
+              <label for="u_password">Password</label>
+              <input type="password" name="u_password" id="u_password" class="form-control" required>
           </div>
           <button type="submit" class="btn-primary">Login</button>
-        </form>
+      </form>
       </div>
 </div>
 {% endblock %}

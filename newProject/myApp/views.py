@@ -1,16 +1,57 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.views import View
 from .models import *
+from django.shortcuts import redirect, render
+from django.contrib import messages
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.shortcuts import render, redirect
 
 def home(request):
     return render(request, "home.html")
 
 def login(request):
+    if request.method == "POST":
+        username = request.POST["u_name"]
+        password = request.POST["u_password"]
+        
+        authenticated_user = authenticate(username=username, password=password)
+        
+        if authenticated_user is not None:
+            auth_login(request, authenticated_user)
+            messages.success(request, f"Welcome, {username}!")
+            return render(request, "home.html", {'username' : username})
+        
+        else:
+            messages.error(request, "Try again!")
+            return redirect("login")
+            
     return render(request, "login.html")
 
 def register(request):
+    if request.method == "POST":
+        u_name = request.POST["u_name"]
+        u_email = request.POST["u_email"]
+        u_password = request.POST["u_password"]
+        u_age = request.POST["u_age"]
+        u_address = request.POST["u_address"]
+        u_mobile = request.POST["u_mobile"]
+        u_gender = request.POST["u_gender"]
+        
+        # Create a user using Django's built-in authentication
+        user = User.objects.create_user(username=u_name, email=u_email, password=u_password)
+        user.age = u_age
+        user.address = u_address
+        user.mobile = u_mobile
+        user.gender = u_gender
+        user.save()
+            
+        messages.success(request, "Your account has been successfully created.")
+        return redirect("login")
+    
     return render(request, "register.html")
+
+def logout(request):
+    auth_logout(request)
+    messages.success(request, "Logged out Successfully!")
+    return redirect('home')
 
 def products(request):
     products = MedicalAccessories.objects.all()
@@ -28,10 +69,6 @@ def emergency(request):
 def user_list(request):
     users = User.objects.all()
     return render(request, 'user_list.html', {'users': users})
-
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from .models import *
 
 def products(request):
     products = MedicalAccessories.objects.all()
@@ -59,9 +96,9 @@ def add_to_cart(request, product_id):
             cart_item.quantity += quantity
         cart_item.save()
         
-        return redirect('cart')
+        return render(request, "cart.html")
     else:
-        return redirect('products')
+        return render(request, "products.html")
 
 def remove_from_cart(request, product_id):
     if request.method == 'POST':
@@ -73,4 +110,4 @@ def remove_from_cart(request, product_id):
         except CartItem.DoesNotExist:
             pass
         
-    return redirect('cart')
+    return render(request, "cart.html")

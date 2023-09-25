@@ -1,17 +1,7 @@
 from django.db import models
 
-class User(models.Model):
-    u_name = models.CharField(max_length=100)
-    u_password = models.CharField(max_length=100)
-    u_age = models.CharField(max_length=3)
-    u_email = models.EmailField(unique=True)
-    u_address = models.CharField(max_length=100)
-    GENDER_CHOICES = (
-        ('Male', 'Male'),
-        ('Female', 'Female'),
-    )
-    u_gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
-    u_mobile = models.CharField(max_length=100, unique=True)
+from django.db import models
+from django.contrib.auth.models import User
     
 class MedicalAccessories(models.Model):
     p_image = models.ImageField()

@@ -12,7 +12,6 @@
     <title>{% block title %}Home{% endblock %}</title>
 </head>
 <body>
-
     <div class="topnav">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'products' %}">Products</a>
@@ -21,13 +20,20 @@
         <a href="{% url 'about' %}">About</a>
 
         <div id="user-links">
-            <a href="{% url 'login' %}" class="user-link">Login</a>
-            <a href="{% url 'register' %}" class="user-link">Register</a>
+            {% if user.is_authenticated %}
+                <div class="user-info">
+                    <p>{{ user.username }}</p>
+                    <a href="{% url 'logout' %}" class="user-link">Log Out</a>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="user-link">Login</a>
+                <a href="{% url 'register' %}" class="user-link">Register</a>
+            {% endif %}
         </div>
-        
     </div>
-        
-        {% block content %}{% endblock %}
+
+    <!-- Your page content here -->
+    {% block content %}{% endblock %}
 
     <footer>
         <div class="footer-content">
@@ -45,7 +51,7 @@
                 </ul>
             </div>
         </div>
-        
+
         <div class="footer-bottom">
             <p>Copyright &copy; 2023 NewDevelopers</p>
             <div class="footer-menu">
@@ -58,6 +64,60 @@
             </div>
         </div>
     </footer>
+
+    <div class="page-overlay"></div>
+    <div class="message-container {% if messages %}show{% endif %}">
+        {% if messages %}
+        <div class="message" id="message">
+            {% for message in messages %}
+            <div class="{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <script>
+        // Function to fade in the page overlay
+        function fadeInPageOverlay() {
+            const pageOverlay = document.querySelector(".page-overlay");
+            if (pageOverlay) {
+                pageOverlay.style.opacity = "1";
+                pageOverlay.style.pointerEvents = "auto"; // Enable interactions
+            }
+        }
+    
+        // Function to fade out the page overlay
+        function fadeOutPageOverlay() {
+            const pageOverlay = document.querySelector(".page-overlay");
+            if (pageOverlay) {
+                pageOverlay.style.opacity = "0";
+                pageOverlay.style.pointerEvents = "none"; // Disable interactions
+            }
+        }
+    
+        // Function to fade out and remove the message container
+        function removeMessageContainer() {
+            const messageContainer = document.querySelector(".message-container");
+            if (messageContainer) {
+                setTimeout(function () {
+                    messageContainer.style.opacity = "0";
+                    setTimeout(function () {
+                        messageContainer.style.display = "none";
+                        fadeOutPageOverlay(); // Hide the overlay
+                    }, 500); // Adjust the duration as needed
+                }, 2000); // Message container will disappear after 2 seconds
+            }
+        }
+    
+        // Call these functions when the page loads and messages are present
+        window.onload = function () {
+            const messagesExist = document.querySelector(".message");
+            if (messagesExist) {
+                fadeInPageOverlay(); // Initially, show the overlay
+                removeMessageContainer(); // Start the message removal process
+            }
+        };
+    </script>
+    
 
 </body>
 </html>

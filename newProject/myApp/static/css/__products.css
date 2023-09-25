@@ -47,7 +47,7 @@
 }
 
 .product-card {
-    max-width: 280px;
+    width: 280px;
     height: 400px;
     margin: 10px;
     background-color: #fff;
