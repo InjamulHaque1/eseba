@@ -1,3 +1,4 @@
+from django.utils import timezone
 from sqlite3 import IntegrityError
 from django.db import transaction
 from django.urls import reverse
@@ -197,28 +198,44 @@ def update_cart(request, product_id):
 def checkout(request):
     user = request.user
     cart_items = CartItem.objects.filter(user=user)
+    
+    # Calculate the total cost
+    total_cost = 0
+    for item in cart_items:
+        total_cost += item.total_cost
+    
+    context = {
+        'bill_items': cart_items,  # Pass cart_items to the checkout template
+        'total_cost': total_cost,
+    }
 
-    # Use a transaction to ensure consistency in case of errors
     with transaction.atomic():
-        try:
-            # Update the quantity of each item in the cart
-            for item in cart_items:
-                if item.accessory.p_count >= item.quantity:
-                    item.accessory.p_count -= item.quantity
-                    item.accessory.save()
-                else:
-                    # Handle the case where the quantity in the cart exceeds the available stock
-                    messages.error(request, f"Insufficient stock for {item.accessory.p_name}.")
-                    return redirect('cart')
+        for item in cart_items:
+            # Check stock availability
+            if item.accessory.p_count >= item.quantity:
+                item.accessory.p_count -= item.quantity
+                item.accessory.save()
+            else:
+                # Handle the case where the quantity in the cart exceeds the available stock
+                messages.error(request, f"Insufficient stock for {item.accessory.p_name}.")
+                return redirect('cart')
 
-            # Clear the user's cart
-            cart_items.delete()
-            messages.success(request, "Checkout successful.")
-        except IntegrityError:
-            messages.error(request, "An error occurred during checkout.")
-            return redirect('cart')
+            # Create a new Bill instance for each item and save it
+            new_bill = Bill(
+                customer=user,  # Replace with actual customer information
+                total_cost=item.total_cost,
+                created_at=timezone.now(),  # Save the current time
+                quantity=item.quantity,  # Save quantity
+                accessory=item.accessory,  # Link the accessory to the bill
+            )
+            new_bill.save()
+        
+        messages.success(request, "Checkout successful.")
 
-    return redirect('home')
+    # Clear the user's cart after the transaction is completed
+    cart_items.delete()
+
+    return render(request, 'checkout.html', {'bill_items': cart_items})
 
 def appointment(request):
     return render(request, "appointment.html")

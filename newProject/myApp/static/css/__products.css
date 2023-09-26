@@ -74,7 +74,7 @@
     text-align: justify;
     box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
     background-color: rgba(221, 221, 221, 0.594);
-    backdrop-filter: blur(20px);
+    transition: transform 0.3s ease-in-out; 
 }
 
 .product-actions {
@@ -95,7 +95,7 @@
     margin-bottom: 5px;
 }
 .product-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px);
 }
 
 .img1{
@@ -154,19 +154,19 @@
 }
 .product-card form button {
     font-family: 'Mooli', sans-serif;
-    background-color: #4CAF50; /* Green color, you can change this to your preferred color */
-    color: #fff;
-    text-decoration: none;
+    background-color: #00ff2a; /* Green color, you can change this to your preferred color */
+    color: #000;
+    font-weight: bold;
     border: none;
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s;
-    padding: 10px 15px; /* Adjust padding as needed */
+    padding: 12px 15px; /* Adjust padding as needed */
     margin-left: 10px; /* Add some space between the input and button */
 }
 
 .product-card form button:hover {
-    background-color: #106514; /* Darker green on hover */
+    background-color: #81ff87; /* Darker green on hover */
 }
 
 .go-to-cart-button {
