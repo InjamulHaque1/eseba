@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from .forms import UserProfileForm, UserForm
 
 def home(request):
     return render(request, "home.html")
@@ -41,11 +42,9 @@ def register(request):
         try:
             # Attempt to create a new user
             user = User.objects.create_user(username=u_name, email=u_email, password=u_password)
-            user.age = u_age
-            user.address = u_address
-            user.mobile = u_mobile
-            user.gender = u_gender
             user.save()
+            user_profile = UserProfile(user=user, age=u_age, address=u_address, mobile=u_mobile, gender=u_gender)
+            user_profile.save()
             
             authenticated_user = authenticate(username=u_name, password=u_password)
             if authenticated_user is not None:
@@ -58,32 +57,31 @@ def register(request):
 
     return render(request, "register.html")
 
+def user_profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+
+    if request.method == "POST":
+        profile_form = UserProfileForm(request.POST, instance=user_profile)
+        user_form = UserForm(request.POST, instance=request.user)
+
+        if profile_form.is_valid() and user_form.is_valid():
+            profile_form.save()
+            user_form.save()
+            messages.success(request, "Profile updated successfully.")
+            return redirect('user_profile')
+        else:
+            messages.error(request, "Error updating profile. Please check the form.")
+    else:
+        profile_form = UserProfileForm(instance=user_profile)
+        user_form = UserForm(instance=request.user)
+
+    return render(request, 'user_profile.html', {'user_profile': user_profile, 'profile_form': profile_form, 'user_form': user_form})
+
 
 def logout(request):
     auth_logout(request)
     messages.success(request, "Logged out Successfully!")
     return redirect('home')
-
-def products(request):
-    products = MedicalAccessories.objects.all()
-    return render(request, "products.html", {'products': products})
-
-def appointment(request):
-    return render(request, "appointment.html")
-
-def about(request):
-    return render(request, "about.html")
-
-def emergency(request):
-    return render(request, "emergency.html")
-
-def user_list(request):
-    users = User.objects.all()
-    return render(request, 'user_list.html', {'users': users})
-
-def products(request):
-    products = MedicalAccessories.objects.all()
-    return render(request, "products.html", {'products': products})
 
 @login_required
 def cart(request):
@@ -105,7 +103,11 @@ def add_to_cart(request, product_id):
     if request.method == 'POST':
         user = request.user
         product = get_object_or_404(MedicalAccessories, pk=product_id)
-        quantity = int(request.POST.get('quantity', 1))
+        quantity = int(request.POST.get('quantity', 0))
+
+        if quantity <= 0:
+            messages.error(request, "Add at least 1 item!")
+            return redirect(reverse('products'))
 
         # Check if the item is already in the cart for the user
         cart_item, created = CartItem.objects.get_or_create(user=user, accessory=product)
@@ -116,11 +118,11 @@ def add_to_cart(request, product_id):
             cart_item.quantity += quantity
         cart_item.total_cost = cart_item.quantity * cart_item.accessory.p_cost  # Calculate the total cost
         cart_item.save()
-
-        messages.success(request, "Item added to your cart.")
-        return redirect(reverse('cart'))
+        messages.success(request, "Successfully added")
+        return redirect(reverse('products'))
     else:
         return redirect('products')  # Redirect to the products page if not a POST request
+
 @login_required
 def remove_from_cart(request, product_id):
     if request.method == 'POST':
@@ -155,3 +157,49 @@ def update_cart(request, product_id):
             messages.error(request, "Item not found in your cart.")
 
     return redirect('cart')
+
+from django.db import transaction
+
+@login_required
+def checkout(request):
+    user = request.user
+    cart_items = CartItem.objects.filter(user=user)
+
+    # Use a transaction to ensure consistency in case of errors
+    with transaction.atomic():
+        try:
+            # Update the quantity of each item in the cart
+            for item in cart_items:
+                if item.accessory.p_count >= item.quantity:
+                    item.accessory.p_count -= item.quantity
+                    item.accessory.save()
+                else:
+                    # Handle the case where the quantity in the cart exceeds the available stock
+                    messages.error(request, f"Insufficient stock for {item.accessory.p_name}.")
+                    return redirect('cart')
+
+            # Clear the user's cart
+            cart_items.delete()
+            messages.success(request, "Checkout successful.")
+        except IntegrityError:
+            messages.error(request, "An error occurred during checkout.")
+            return redirect('cart')
+
+    return redirect('home')
+
+def appointment(request):
+    return render(request, "appointment.html")
+
+def about(request):
+    return render(request, "about.html")
+
+def emergency(request):
+    return render(request, "emergency.html")
+
+def user_list(request):
+    users = User.objects.all()
+    return render(request, 'user_list.html', {'users': users})
+
+def products(request):
+    products = MedicalAccessories.objects.all()
+    return render(request, "products.html", {'products': products})

@@ -22,7 +22,7 @@
         <div id="user-links">
             {% if user.is_authenticated %}
                 <div class="user-info">
-                    <p>{{ user.username }}</p>
+                    <a href="{% url 'user_profile' %}" class="user-link">{{ user.username }}</a>
                     <a href="{% url 'logout' %}" class="user-link">Log Out</a>
                 </div>
             {% else %}
@@ -103,8 +103,8 @@
                     setTimeout(function () {
                         messageContainer.style.display = "none";
                         fadeOutPageOverlay(); // Hide the overlay
-                    }, 500); // Adjust the duration as needed
-                }, 1000); // Message container will disappear after 2 seconds
+                    }, 350); // Adjust the duration as needed
+                }, 750); // Message container will disappear after 2 seconds
             }
         }
     
@@ -117,7 +117,5 @@
             }
         };
     </script>
-    
-
 </body>
 </html>

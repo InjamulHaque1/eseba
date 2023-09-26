@@ -1,0 +1,78 @@
+<!-- user_profile.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra-styles %}
+<link rel="stylesheet" href="{% static 'css/__user_profile.css' %}" />
+{% endblock %}
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<div class="main_container">
+    <div class="container">
+        <h2>User Profile</h2>
+        <div id="viewMode">
+            <p><strong>Username:</strong> {{ user_profile.user.username }}</p>
+            <p><strong>Email:</strong> {{ user_profile.user.email }}</p>
+            <p><strong>Age:</strong> {{ user_profile.age }}</p>
+            <p><strong>Address:</strong> {{ user_profile.address }}</p>
+            <p><strong>Mobile:</strong> {{ user_profile.mobile }}</p>
+            <p><strong>Gender:</strong> {{ user_profile.gender }}</p>
+            <button id="editButton">Edit</button>
+        </div>
+        <div id="editMode" style="display: none;">
+            <form id="profileForm" method="post">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <button type="button" id="saveButton"><a href="{% url 'user_profile' %}">Save</a></button>
+                <button type="button" id="cancelButton">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const viewMode = document.getElementById("viewMode");
+    const editMode = document.getElementById("editMode");
+    const editButton = document.getElementById("editButton");
+    const saveButton = document.getElementById("saveButton");
+    const cancelButton = document.getElementById("cancelButton");
+    const profileForm = document.getElementById("profileForm");
+
+    // Function to toggle between view and edit modes
+    editButton.addEventListener("click", () => {
+        viewMode.style.display = "none";
+        editMode.style.display = "block";
+    });
+
+    // Function to cancel editing and go back to view mode
+    cancelButton.addEventListener("click", () => {
+        viewMode.style.display = "block";
+        editMode.style.display = "none";
+    });
+
+    // Function to submit the form via AJAX when Save is clicked
+    saveButton.addEventListener("click", () => {
+        const formData = new FormData(profileForm);
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("POST", "{% url 'user_profile' %}");
+        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Successfully updated
+                // You can add a success message or redirect here if needed
+                console.log("Profile updated successfully");
+            } else {
+                // Handle errors here
+                console.error("Error updating profile");
+            }
+        };
+
+        xhr.send(formData);
+    });
+</script>
+{% endblock %}
