@@ -61,14 +61,19 @@ def user_profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
 
     if request.method == "POST":
+        if "delete_account" in request.POST:
+            user_profile.delete()
+            auth_logout(request)
+            messages.success(request, "Your account has been deleted.")
+            return redirect('login')
+
         profile_form = UserProfileForm(request.POST, instance=user_profile)
         user_form = UserForm(request.POST, instance=request.user)
 
         if profile_form.is_valid() and user_form.is_valid():
             profile_form.save()
             user_form.save()
-            messages.success(request, "Profile updated successfully.")
-            return redirect('user_profile')
+            return redirect('home')
         else:
             messages.error(request, "Error updating profile. Please check the form.")
     else:
@@ -76,7 +81,6 @@ def user_profile(request):
         user_form = UserForm(instance=request.user)
 
     return render(request, 'user_profile.html', {'user_profile': user_profile, 'profile_form': profile_form, 'user_form': user_form})
-
 
 def logout(request):
     auth_logout(request)

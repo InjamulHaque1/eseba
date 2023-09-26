@@ -1,5 +1,6 @@
 /* Updated CSS for user_profile.html */
 .main_container {
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,14 +13,14 @@
     background-color: rgba(0, 0, 0, 0.5);
     color: #000000;
     background-attachment: fixed;
-        
 }
+
 .container {
     width: 800px;
     margin: 150px auto;
     padding: 50px 100px;
-    position: relative; /* Position relative for button placement */
-    vertical-align: top; 
+    position: relative;
+    vertical-align: top;
     color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
@@ -44,7 +45,8 @@ label {
 }
 
 input[type="number"],
-input[type="text"] {
+input[type="text"],
+#id_email {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -54,24 +56,39 @@ input[type="text"] {
     font-size: 16px;
 }
 
-/* Style the Edit button */
-button#editButton {
+/* Style the Edit and Delete Account buttons */
+.button-container {
+    font-family: Mooli, sans-serif;
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Space buttons evenly */
+    margin-bottom: 10px; /* Add some spacing below the buttons */
+}
+
+.button-container button {
+    font-family: Mooli, sans-serif;
+    background-color: #dc3545;
     font-size: 20px;
-    background-color: #007BFF;
     color: #fff;
-    padding: 16px 32px; /* Larger padding for the Edit button */
+    padding: 16px 32px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition */
-    position: relative; /* Position the button absolutely */
-    bottom: 20px; /* Adjust the distance from the bottom */
-    left: 50%; /* Position the button at the center horizontally */
-    transform: translateX(-50%); /* Center horizontally */
+    transition: background-color 0.3s ease;
+    flex: 1; /* Equal width for both buttons */
 }
 
-button#editButton:hover {
-    background-color: #0056b3; /* Darken the color on hover */
+#editButton {
+    background-color: #007BFF;
+    margin-right: 10px;
+    width: 100px; /* Add some spacing between the buttons */
+}
+
+.b1:hover {
+    background-color: #0056b3; /* Edit button hover color */
+}
+
+.b2:hover {
+    background-color: #c82333; /* Delete button hover color */
 }
 
 /* Center the form in edit mode */
@@ -82,43 +99,34 @@ button#editButton:hover {
 button#saveButton {
     background-color: #28a745;
     color: #fff;
-    padding: 12px 24px; /* Larger padding for buttons */
+    padding: 12px 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition */
-    margin-right: 10px; /* Add some space between Save and Cancel buttons */
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
 }
-a{
+
+a {
     color: white;
     text-decoration: none;
 }
 
 button#saveButton:hover {
-    background-color: #1e7e34; /* Darken the color on hover */
+    background-color: #1e7e34;
 }
 
 /* Style the Cancel button */
 button#cancelButton {
     background-color: #dc3545;
     color: #fff;
-    padding: 12px 24px; /* Larger padding for buttons */
+    padding: 12px 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition */
+    transition: background-color 0.3s ease;
 }
 
 button#cancelButton:hover {
-    background-color: #c82333; /* Darken the color on hover */
-}
-/* Add CSS for the email field */
-#id_email {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    background-color: #c82333;
 }

@@ -12,6 +12,17 @@
 <div class="main_container">
     <div class="container">
         <h2>User Profile</h2>
+
+        {% if messages %}
+        <div class="alert alert-success">
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
         <div id="viewMode">
             <p><strong>Username:</strong> {{ user_profile.user.username }}</p>
             <p><strong>Email:</strong> {{ user_profile.user.email }}</p>
@@ -19,20 +30,26 @@
             <p><strong>Address:</strong> {{ user_profile.address }}</p>
             <p><strong>Mobile:</strong> {{ user_profile.mobile }}</p>
             <p><strong>Gender:</strong> {{ user_profile.gender }}</p>
-            <button id="editButton">Edit</button>
+            <div class="button-container">
+                <button id="editButton" class="b1">Edit</button>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="delete_account" class="b2">Delete Account</button>
+                </form>
+            </div>
         </div>
+        
         <div id="editMode" style="display: none;">
             <form id="profileForm" method="post">
                 {% csrf_token %}
                 {{ user_form.as_p }}
                 {{ profile_form.as_p }}
-                <button type="button" id="saveButton"><a href="{% url 'user_profile' %}">Save</a></button>
+                <button type="button" id="saveButton">Save</button>
                 <button type="button" id="cancelButton">Cancel</button>
             </form>
         </div>
     </div>
 </div>
-
 <script>
     const viewMode = document.getElementById("viewMode");
     const editMode = document.getElementById("editMode");
@@ -53,25 +70,22 @@
         editMode.style.display = "none";
     });
 
-    // Function to submit the form via AJAX when Save is clicked
     saveButton.addEventListener("click", () => {
         const formData = new FormData(profileForm);
         const xhr = new XMLHttpRequest();
 
         xhr.open("POST", "{% url 'user_profile' %}");
+
         xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
 
         xhr.onload = function () {
             if (xhr.status === 200) {
-                // Successfully updated
-                // You can add a success message or redirect here if needed
-                console.log("Profile updated successfully");
+                location.reload();
             } else {
-                // Handle errors here
                 console.error("Error updating profile");
             }
         };
-
+        event.preventDefault();
         xhr.send(formData);
     });
 </script>
