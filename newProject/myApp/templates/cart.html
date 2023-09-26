@@ -26,7 +26,7 @@
         {% for item in cart_items %}
           <tr>
             <td>{{ item.accessory.p_name }}</td>
-            <td>${{ item.accessory.p_cost }}</td>
+            <td>{{ item.accessory.p_cost }} Tk</td>
             <td class="cart-actions">
               <form method="post" action="{% url 'update_cart' item.accessory.id %}">
                 {% csrf_token %}
@@ -39,7 +39,7 @@
                 <button type="submit" class="update-button">Update</button>
               </form>
             </td>
-            <td>${{ item.total_cost }}</td>
+            <td>{{ item.total_cost }} Tk</td>
             <td class="cart-actions">
               <form method="post" action="{% url 'remove_from_cart' item.accessory.id %}">
                 {% csrf_token %}
@@ -52,7 +52,7 @@
     </table>
 
     <div class="cart-total">
-      <strong>Total: ${{ total_cost }}</strong>
+      <strong>Total: {{ total_cost }} Tk</strong>
     </div>
 
     <div class="checkout-button">

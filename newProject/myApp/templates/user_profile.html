@@ -12,17 +12,6 @@
 <div class="main_container">
     <div class="container">
         <h2>User Profile</h2>
-
-        {% if messages %}
-        <div class="alert alert-success">
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
-
         <div id="viewMode">
             <p><strong>Username:</strong> {{ user_profile.user.username }}</p>
             <p><strong>Email:</strong> {{ user_profile.user.email }}</p>

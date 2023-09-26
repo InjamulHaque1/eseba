@@ -1,6 +1,7 @@
 /* cart.css */
 
 .container {
+  min-height: 70vh;
   margin: 20px;
 }
 
@@ -17,9 +18,10 @@ h1 {
 
 .cart-table th,
 .cart-table td {
+  overflow: hidden;
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #333;
 }
 
 .cart-table th {
@@ -27,9 +29,12 @@ h1 {
 }
 
 .cart-table input[type="number"] {
-  width: 40px;
+  width: 80px;
   padding: 5px;
   text-align: center;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
 }
 
 .cart-total {
@@ -60,7 +65,8 @@ h1 {
 }
 
 .cart-table .cart-actions button {
-  padding: 5px 10px;
+  font-family: Mooli, sans-serif;
+  padding: 9px 13px;
   color: #fff;
   border: none;
   border-radius: 5px;

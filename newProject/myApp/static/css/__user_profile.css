@@ -55,7 +55,16 @@ input[type="text"],
     border-radius: 5px;
     font-size: 16px;
 }
-
+#id_gender {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    /* Add any additional styles you want */
+}
 /* Style the Edit and Delete Account buttons */
 .button-container {
     font-family: Mooli, sans-serif;

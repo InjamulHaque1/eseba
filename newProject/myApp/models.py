@@ -8,23 +8,26 @@ class UserProfile(models.Model):
     age = models.IntegerField()
     address = models.CharField(max_length=255)
     mobile = models.CharField(max_length=15)
-    gender = models.CharField(max_length=10)
+    GENDER = (
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+    )
+    gender = models.CharField(max_length=10, choices=GENDER)
 
     def __str__(self):
         return self.user.username   
 
 @receiver(post_delete, sender=UserProfile)
-def delete_user_profile(sender, instance, **kwargs):
+def delete_user_profile(sender, obj, **kwargs):
     try:
-        instance.user.delete()
+        obj.user.delete()
     except User.DoesNotExist:
         pass
 
-    
 class MedicalAccessories(models.Model):
     p_image = models.ImageField()
     p_name = models.CharField(max_length=100)
-    p_description = models.CharField(max_length=100)
+    p_description = models.CharField(max_length=1000)
     CATEGORY = (
         ('Medicine', 'Medicine'),
         ('Equipment', 'Equipment'),

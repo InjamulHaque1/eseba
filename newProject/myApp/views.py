@@ -1,5 +1,5 @@
 from sqlite3 import IntegrityError
-
+from django.db import transaction
 from django.urls import reverse
 from .models import *
 from django.shortcuts import get_object_or_404, redirect, render
@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm, UserForm
+from django.db.models import Q 
 
 def home(request):
     return render(request, "home.html")
@@ -83,9 +84,39 @@ def user_profile(request):
     return render(request, 'user_profile.html', {'user_profile': user_profile, 'profile_form': profile_form, 'user_form': user_form})
 
 def logout(request):
+    user = request.user
+    CartItem.objects.filter(user=user).delete()
+    
     auth_logout(request)
     messages.success(request, "Logged out Successfully!")
     return redirect('home')
+
+def products(request):
+    products = MedicalAccessories.objects.all()
+
+    context = {
+        'products': products,
+    }
+
+    return render(request, 'products.html', context)
+
+def product_search(request):
+    query = request.GET.get('q')
+    
+    if query:
+        # Perform a case-insensitive search on product names and descriptions
+        products = MedicalAccessories.objects.filter(
+            Q(p_name__icontains=query) | Q(p_description__icontains=query)
+        )
+    else:
+        messages.error(request, "No product found...")
+        products = MedicalAccessories.objects.all()
+
+    context = {
+        'products': products,
+    }
+
+    return render(request, 'products.html', context)
 
 @login_required
 def cart(request):
@@ -162,8 +193,6 @@ def update_cart(request, product_id):
 
     return redirect('cart')
 
-from django.db import transaction
-
 @login_required
 def checkout(request):
     user = request.user
@@ -199,11 +228,3 @@ def about(request):
 
 def emergency(request):
     return render(request, "emergency.html")
-
-def user_list(request):
-    users = User.objects.all()
-    return render(request, 'user_list.html', {'users': users})
-
-def products(request):
-    products = MedicalAccessories.objects.all()
-    return render(request, "products.html", {'products': products})
