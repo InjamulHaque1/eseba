@@ -144,6 +144,10 @@ def add_to_cart(request, product_id):
         if quantity <= 0:
             messages.error(request, "Add at least 1 item!")
             return redirect(reverse('products'))
+        
+        if quantity > product.p_count:
+            messages.error(request, "Out of stock!")
+            return redirect(reverse('products'))
 
         # Check if the item is already in the cart for the user
         cart_item, created = CartItem.objects.get_or_create(user=user, accessory=product)
@@ -215,12 +219,7 @@ def checkout(request):
             if item.accessory.p_count >= item.quantity:
                 item.accessory.p_count -= item.quantity
                 item.accessory.save()
-            else:
-                # Handle the case where the quantity in the cart exceeds the available stock
-                messages.error(request, f"Insufficient stock for {item.accessory.p_name}.")
-                return redirect('cart')
 
-            # Create a new Bill instance for each item and save it
             new_bill = Bill(
                 customer=user,  # Replace with actual customer information
                 total_cost=item.total_cost,

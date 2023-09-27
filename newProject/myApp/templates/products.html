@@ -31,7 +31,7 @@
                         <form method="post" action="{% url 'add_to_cart' product.id %}">
                             {% csrf_token %}
                             <label for="quantity">Quantity:</label>
-                            <input type="number" name="quantity" id="quantity" value="0" min="0" max="10">
+                            <input type="number" name="quantity" id="quantity" min="0" max="10">
                             <button type="submit">Add</button>
                         </form>
                     </div>
