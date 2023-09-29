@@ -89,7 +89,7 @@ def user_profile(request):
         'user_profile': user_profile,
         'profile_form': profile_form,
         'user_form': user_form,
-    }
+        }
 
     return render(request, 'user_profile.html', context)
 
@@ -107,7 +107,7 @@ def products(request):
 
     context = {
         'products': products,
-    }
+        }
 
     return render(request, 'products.html', context)
 
@@ -124,7 +124,7 @@ def product_search(request):
 
     context = {
         'products': products,
-    }
+        }
 
     return render(request, 'products.html', context)
 
@@ -235,8 +235,8 @@ def checkout(request):
     cart_items.delete()
     
     context ={
-        {'bill_items': cart_items}
-    }
+        'bill_items': cart_items
+        }
 
     return render(request, 'checkout.html', context)
 
