@@ -30,27 +30,22 @@ def home(request):
     return render(request, "home.html")
 
 def login(request):
-    
-    
     if request.method == "POST":
-        username = request.POST["u_name"]
-        password = request.POST["u_password"]
+        username = request.POST.get("u_name")
+        password = request.POST.get("u_password")
         
-        authenticated_user = authenticate(username=username, password=password)       
+        authenticated_user = authenticate(request, username=username, password=password)       
         if authenticated_user is not None:
             auth_login(request, authenticated_user)
             messages.success(request, f"Welcome, {username}!")
-            return render(request, "home.html", {'username' : username})
+            return redirect("home")  # Redirect to the home page upon successful login
         
         else:
             messages.error(request, "Try again!")
-            return redirect("login")
-            
+
     return render(request, "login.html")
 
 def register(request):
-    
-    
     if request.method == "POST":
         u_name = request.POST["u_name"]
         u_email = request.POST["u_email"]
@@ -85,17 +80,13 @@ def register(request):
     return render(request, "register.html")
 
 @login_required
-@login_required
 def user_profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
-    profile_form = UserProfileForm(instance=user_profile)
-    user_form = UserForm(instance=request.user)
     profile_form = UserProfileForm(instance=user_profile)
     user_form = UserForm(instance=request.user)
 
     if request.method == "POST":
         if "delete_account" in request.POST:
-            request.user.delete()
             request.user.delete()
             auth_logout(request)
             messages.success(request, "Your account has been deleted.")
@@ -109,8 +100,6 @@ def user_profile(request):
             user_form.save()
             messages.success(request, "Profile updated successfully.")
             return redirect('user_profile')
-            messages.success(request, "Profile updated successfully.")
-            return redirect('user_profile')
         else:
             messages.error(request, "Error updating profile. Please check the form.")
 
@@ -119,13 +108,6 @@ def user_profile(request):
         'profile_form': profile_form,
         'user_form': user_form,
         }
-
-    context = {
-        'user_profile': user_profile,
-        'profile_form': profile_form,
-        'user_form': user_form,
-        }
-
     return render(request, 'user_profile.html', context)
 
 @login_required
@@ -178,14 +160,6 @@ def cart(request):
         'cart_items': cart_items,
         'total_cost': total_cost
         }
-    
-    context = {
-        'cart_items': cart_items,
-        'total_cost': total_cost
-        }
-
-    return render(request, 'cart.html', context)
-
     return render(request, 'cart.html', context)
 
 @login_required
@@ -213,18 +187,14 @@ def add_to_cart(request, product_id):
             cart_item.quantity += quantity
             
         cart_item.total_cost = cart_item.quantity * cart_item.accessory.p_cost
-            
-        cart_item.total_cost = cart_item.quantity * cart_item.accessory.p_cost
         cart_item.save()
         messages.success(request, "Successfully added")
         return redirect(reverse('products'))
     else:
         return redirect('products') 
-        return redirect('products') 
 
 @login_required
 def remove_from_cart(request, product_id):
-    
     
     if request.method == 'POST':
         user = request.user
@@ -232,16 +202,10 @@ def remove_from_cart(request, product_id):
         cart_item = CartItem.objects.get(user=user, accessory=product)
         cart_item.delete()
         messages.success(request, "Item removed from your cart.")
-        cart_item = CartItem.objects.get(user=user, accessory=product)
-        cart_item.delete()
-        messages.success(request, "Item removed from your cart.")
-
     return redirect('cart')
 
 @login_required
-@login_required
 def update_cart(request, product_id):
-    
     
     if request.method == 'POST':
         user = request.user
@@ -259,15 +223,6 @@ def update_cart(request, product_id):
             messages.success(request, "Item removed from your cart.")
         cart_item = CartItem.objects.get(user=user, accessory=product)
         
-        if quantity > 0:
-            cart_item.quantity = quantity
-            cart_item.total_cost = cart_item.quantity * cart_item.accessory.p_cost
-            cart_item.save()
-            messages.success(request, "Cart item updated.")
-        else:
-            cart_item.delete()
-            messages.success(request, "Item removed from your cart.")
-
     return redirect('cart')
 
 @login_required
@@ -283,10 +238,6 @@ def checkout(request):
         if item.accessory.p_count >= item.quantity:
             item.accessory.p_count -= item.quantity
             item.accessory.save()
-    for item in cart_items:
-        if item.accessory.p_count >= item.quantity:
-            item.accessory.p_count -= item.quantity
-            item.accessory.save()
 
         new_bill = Bill(
             customer=user,
@@ -296,23 +247,8 @@ def checkout(request):
             accessory=item.accessory,
         )
         new_bill.save()
-        new_bill = Bill(
-            customer=user,
-            total_cost=item.total_cost,
-            created_at=timezone.now(), 
-            quantity=item.quantity, 
-            accessory=item.accessory,
-        )
-        new_bill.save()
-        messages.success(request, "Checkout successful.")
-
+    messages.success(request, "Checkout successful.")
     cart_items.delete()
-    
-    context ={
-        'bill_items': cart_items
-        }
-
-    return render(request, 'checkout.html', context)
     
     context ={
         'bill_items': cart_items

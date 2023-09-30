@@ -60,7 +60,6 @@
     align-items: flex-start;
     flex-wrap: wrap;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
 }
 
 .doctor-card{
