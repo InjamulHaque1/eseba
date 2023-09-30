@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Appointment list{% endblock %}
+
+{% block extra-styles %}
+    <link rel="stylesheet" href="{% static 'css/__appointment_list.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>Your Appointments</h1>
+    <ul>
+        {% for appointment in appointments %}
+            <li>
+                Doctor: {{ appointment.doctor.name }}
+                Date and Time: {{ appointment.appointment_date }}
+            </li>
+        {% empty %}
+            <li>No appointments yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

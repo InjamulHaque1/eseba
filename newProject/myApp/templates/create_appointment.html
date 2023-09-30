@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Create appointment{% endblock %}
+
+{% block extra-styles %}
+    <link rel="stylesheet" href="{% static 'css/__create_appointment.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="container">
+        <h1>Appointment form</h1>
+        <h2>Doctor: {{ doctor.name }}</h2>
+    
+        <form method="post" action="">
+            {% csrf_token %}
+            <input type="hidden" name="doctor_id" value="{{ doctor.id }}">
+            
+            <div class="form-group">
+                <label for="appointment_date">Select Appointment Date:</label>
+                <input type="date" id="appointment_date" name="appointment_date" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Disease description:</label>
+                <textarea id="description" name="description" rows="4" cols="50" maxlength="1000" required></textarea>
+            </div>
+        
+            <button type="submit" class="btn btn-primary">Book</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
-from django.db.models.signals import post_delete
+from django.db.models.signals import pre_delete
 from django.utils import timezone
     
 class UserProfile(models.Model):
@@ -15,16 +15,14 @@ class UserProfile(models.Model):
     )
     gender = models.CharField(max_length=10, choices=GENDER)
 
-    def __str__(self):
-        return self.user.username   
-
-@receiver(post_delete, sender=UserProfile)
-def delete_user_profile(sender, obj, **kwargs):
+@receiver(pre_delete, sender=User)
+def delete_user_profile(sender, instance, **kwargs):
     try:
-        obj.user.delete()
-    except User.DoesNotExist:
+        profile = UserProfile.objects.get(user=instance)
+        profile.delete()
+    except UserProfile.DoesNotExist:
         pass
-
+    
 class MedicalAccessories(models.Model):
     p_image = models.ImageField()
     p_name = models.CharField(max_length=100)
@@ -51,6 +49,20 @@ class Bill(models.Model):
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(default=timezone.now)
     accessory = models.ForeignKey(MedicalAccessories, on_delete=models.CASCADE)
+    
+class Doctor(models.Model):
+    image = models.ImageField()
+    name = models.CharField(max_length=255)
+    specialty = models.CharField(max_length=255)
+    status = models.BooleanField(default=True)
+    cost = models.IntegerField()
+    day_slots = models.CharField(max_length=255)
+    time_slots = models.CharField(max_length=255)
+    available_spots = models.PositiveIntegerField()
 
-    def __str__(self):
-        return f'Bill for {self.customer.username} - {self.created_at}'
+class Appointment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    description = models.CharField(max_length=1000)
+    appointment_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)

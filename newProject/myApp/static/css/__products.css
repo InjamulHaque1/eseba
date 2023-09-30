@@ -168,7 +168,10 @@
 .product-card form button:hover {
     background-color: #81ff87; /* Darker green on hover */
 }
-
+.outside{
+    color: white;
+    font-size: 40px;
+}
 .go-to-cart-button {
     text-align: center;
     margin-top: 20px;

@@ -9,21 +9,21 @@
 
 {% block content %}
 <div class="container">
-  <h1>Your Shopping Cart</h1>
-
+  
   {% if cart_items %}
-    <table class="cart-table">
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Total</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in cart_items %}
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+      <h1>Your Shopping Cart</h1>
           <tr>
             <td>{{ item.accessory.p_name }}</td>
             <td>{{ item.accessory.p_cost }} Tk</td>
@@ -59,7 +59,7 @@
       <a href="{% url 'checkout' %}">Checkout</a>
     </div>
   {% else %}
-    <p>Your shopping cart is empty.</p>
+    <p class="container2">Your shopping cart is empty.</p>
   {% endif %}
 </div>
 {% endblock %}

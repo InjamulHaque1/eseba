@@ -38,13 +38,11 @@
                 </div>    
             {% endfor %}
         {% else %}
-            <p>No products found.</p>
+            <p class="outside">No products found.</p>
         {% endif %}
     </div>
     <div class="go-to-cart-button">
         <a href="{% url 'cart' %}">Go to Cart</a>
     </div>
 </div>
-
-<!-- Button to go to the cart page -->
 {% endblock %}

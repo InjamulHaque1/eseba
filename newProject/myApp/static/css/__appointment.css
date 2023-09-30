@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+.main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-image: url('../image/background.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #000000;
+}
+
+.search-container {
+    margin: 20px 0px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container form {
+    font-family: 'Mooli', sans-serif;
+    display: flex;
+    align-items: center; 
+}
+
+.search-container input[type="text"] {
+    font-family: 'Mooli', sans-serif;
+    padding: 15px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.search-container :focus-visible{
+    overflow: hidden;
+    outline: none;
+    border: none;
+}
+
+.search-container button {
+    font-family: 'Mooli', sans-serif;
+    padding: 15px 30px; 
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+}
+
+.doctor-profile-container {
+    display: flex;
+    padding: 30px 80px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
+}
+
+.doctor-card{
+    width: 320px;
+    height: 500px;
+    margin: 10px;
+    padding: 20px;
+    transition: transform 0.2s;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    text-align: justify;
+    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
+    background-color: rgba(221, 221, 221, 0.594);
+    transition: transform 0.3s ease-in-out; 
+}
+.doctor-info{
+    position: relative;
+    padding: 20px;
+    left: -20px;
+    top: -20px;
+    background-color: white;
+    width: 320px;
+    box-shadow: 0 0 10px rgba(69, 69, 69, 1);
+}
+.img1{
+    background-color: white;
+    width: 320px;
+    position: relative;
+    padding: 20px 0px;
+    left: -20px;
+    top: -20px;
+}
+.img1 img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+}
+/* .doctor-name styles */
+.doctor-name {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* .doctor-specialty styles */
+.doctor-specialty {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+/* .doctor-rating styles */
+.doctor-cost {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+/* .doctor-status styles */
+.doctor-status {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.available {
+    color: #009018; /* Green color for available doctors */
+}
+
+.unavailable {
+    color: #ff0000; /* Red color for unavailable doctors */
+}
+
+/* .appointment-slots styles */
+.appointment-slots {
+    flex: 1;
+}
+.appointment-slots h2{
+   padding: 10px;
+   text-decoration: underline;
+   text-align: center;
+}
+
+/* .action-buttons styles */
+.action-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* .create-appointment-button styles */
+.create-appointment-button {
+    font-family: 'Mooli', sans-serif;
+    background-color: #00ff2a; /* Green color for the button */
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+.create-appointment-button:hover {
+    background-color: #81ff87; /* Darker green on hover */
+}
+.outside{
+    color: white;
+    font-size: 40px;
+}

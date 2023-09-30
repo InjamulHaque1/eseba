@@ -1,0 +1,84 @@
+/* __create_appointment.css */
+
+/* Style for the main container */
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 80vh;
+    background-image: url('../image/background.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #000000;
+}
+.container{
+    width: 600px;
+    margin: 50px auto;
+    height: 580px;
+    padding: 50px 100px;
+    border-radius: 5px;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
+    background-color: rgba(139, 199, 255, 0.282);
+    backdrop-filter: blur(20px);
+}
+/* Style for the form title */
+h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Style for the doctor's name */
+h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Style for form labels */
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Style for input fields */
+input[type="date"],
+textarea {
+    font-family: 'Mooli', sans-serif;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+textarea:focus-visible, textarea:active{
+    overflow: hidden;
+    outline: none;
+    border: none;
+}
+
+/* Style for the submit button */
+button {
+    font-family: 'Mooli', sans-serif;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    margin: 0px 42%;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
