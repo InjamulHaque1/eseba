@@ -38,7 +38,7 @@ def login(request):
         if authenticated_user is not None:
             auth_login(request, authenticated_user)
             messages.success(request, f"Welcome, {username}!")
-            return redirect("home")  # Redirect to the home page upon successful login
+            return redirect("home")
         
         else:
             messages.error(request, "Try again!")

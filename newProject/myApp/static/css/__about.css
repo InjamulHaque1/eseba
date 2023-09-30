@@ -2,15 +2,8 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f0f0f0;
-  text-align: center;
-  background-image: url('../image/background.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  background-attachment: fixed;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.519);
   box-shadow: 0 0 30px rgba(42, 42, 42, 0.745);
 }
 
@@ -21,7 +14,6 @@ h2 {
 }
 
 .team-member {
-  color: white;
   display: inline-block;
   margin: 20px;
   padding: 70px 40px;

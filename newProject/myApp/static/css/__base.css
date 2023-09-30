@@ -7,18 +7,26 @@
 
 body {
     font-family: 'Mooli', sans-serif;
-    background: linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%);
     display: flex;
-    flex-direction: column;
     min-height: 100vh;
+    align-items: stretch;
+    text-align: center;
+    background-image: url(../image/background.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    background-attachment: fixed;
+    flex-direction: column;
     }
 
 .topnav {
     position: sticky;
     top: 0;
-    background-image: linear-gradient(to right, #008dff, #0076fb, #005df4, #0041ea, #001adb);
-    box-shadow: 0 4px 20px rgba(0, 83, 206, 0.4);
     z-index: 999;
+    background-color: rgba(97, 154, 212, 0.428); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
 }
 
 .topnav a {
@@ -26,25 +34,25 @@ body {
     display: block;
     color: rgb(255, 255, 255);
     text-align: center;
+    font-weight: normal;
     padding: 25px 16px;
     margin: 0px 5px;
-    transition: transform 0.3s;
+    transition: transform 0.4s;
     text-decoration: none;
     
 }
 
 .topnav a:hover {
-    font-weight: 800;
-    background-color: rgba(71, 181, 255, 0.463);
+    font-weight: normal;
+    background-color: rgba(151, 213, 255, 0.354);
     border-radius: 5px;
-    backdrop-filter:blur(10px);
-    color: #ffffff;
-    transform: scale(1.1);
+    color: #000000;
+    transform: translateY(10px);
     overflow: hidden;
 }
 #user-links {
     float: right;
-    margin-right: 20px; /* Adjust the margin as needed for spacing */
+    margin-right: 20px;
 }
 
 .user-link {
@@ -56,15 +64,6 @@ body {
     text-decoration: none;
 }
 
-.user-link:hover {
-    font-weight: 800;
-    background-color: rgba(71, 181, 255, 0.463);
-    border-radius: 2px;
-    backdrop-filter: blur(10px);
-    color: #ffffff;
-    transform: scale(1.1);
-    overflow: hidden;
-}
 .user-info {
     display: flex;
     align-items: center;
@@ -72,11 +71,10 @@ body {
     border-radius: 5px;
     margin-right: 10px;
     color: #fff;
-    font-weight: bold;
 }
 .message-container {
     position: fixed;
-    top: 60%; /* Adjust the distance from the top as needed */
+    top: 60%; 
     left: 50%;
     transform: translateX(-50%);
     color: #fff;
@@ -84,7 +82,7 @@ body {
     padding: 0;
     opacity: 0;
     transition: opacity 0.5s;
-    z-index: 9999; /* Adjust z-index as needed */
+    z-index: 9999;
 }
 
 .message-container.show {
@@ -107,18 +105,17 @@ body {
     max-width: 80%;
 }
 
-/* Add a new CSS rule to create an overlay for the entire page */
 .page-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-    z-index: 9998; /* Place it below the message container */
-    opacity: 0; /* Initially transparent */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998; 
+    opacity: 0;
     transition: opacity 1s;
-    pointer-events: none; /* Allows interactions with elements behind it */
+    pointer-events: none; 
 }
 
 footer {

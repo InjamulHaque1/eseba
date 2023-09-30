@@ -34,10 +34,10 @@
 }
 .form-control {
     width: 100%;
-    padding: 10px 0; /* Remove padding on top and bottom */
-    border: none; /* Remove the default border */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.394); /* Add a bottom border */
-    background-color: rgba(0, 0, 0, 0); /* Transparent background */
+    padding: 10px 0; 
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.394);
+    background-color: rgba(0, 0, 0, 0);
     color: #fff;
     transition: border-color 0.5s;
   }
@@ -53,9 +53,8 @@
     color: #fff; 
   }
   
-  /* Add this to style the form placeholders */
   .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.7); /* Change placeholder text color */
+    color: rgba(255, 255, 255, 0.7); 
   }
   h2{
     font-size: 30px;
@@ -71,7 +70,7 @@
     margin-left: 90px;
     padding: 10px;
   }
-/* Button Styles */
+
 .btn-primary {
     font-size: 20px;
     font-family: Mooli, sans-serif;
@@ -83,10 +82,9 @@
     cursor: pointer;
     border-radius: 3px;
     transition: background-color 0.5s, transform 0.2s, border-color 0.5s;
-    border: 1px solid rgba(255, 255, 255, 0.394); /* Add border color */
+    border: 1px solid rgba(255, 255, 255, 0.394); 
   }
   
-  /* Hover Animation */
   .btn-primary:hover {
     background-image: radial-gradient(
       circle 975px at 2.6% 48.3%, 
@@ -95,7 +93,7 @@
     );
     border: none;
     color: #fff;
-    border-color: #fff; /* Add border color */
+    border-color: #fff; 
     transform: scale(1.1);
   }
   

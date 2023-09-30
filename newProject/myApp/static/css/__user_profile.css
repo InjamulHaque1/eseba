@@ -1,4 +1,3 @@
-/* Updated CSS for user_profile.html */
 .main_container {
     
     display: flex;
@@ -63,14 +62,13 @@ input[type="text"],
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    /* Add any additional styles you want */
 }
-/* Style the Edit and Delete Account buttons */
+
 .button-container {
     font-family: Mooli, sans-serif;
-    display: flex; /* Use flexbox */
-    justify-content: space-between; /* Space buttons evenly */
-    margin-bottom: 10px; /* Add some spacing below the buttons */
+    display: flex;
+    justify-content: space-between; 
+    margin-bottom: 10px; 
 }
 
 .button-container button {
@@ -83,24 +81,23 @@ input[type="text"],
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    flex: 1; /* Equal width for both buttons */
+    flex: 1;
 }
 
 #editButton {
     background-color: #007BFF;
     margin-right: 10px;
-    width: 100px; /* Add some spacing between the buttons */
+    width: 100px;
 }
-
-.b1:hover {
-    background-color: #0056b3; /* Edit button hover color */
+#editButton:hover {
+    background-color: #0033ff;
+    margin-right: 10px;
+    width: 100px;
 }
-
 .b2:hover {
-    background-color: #c82333; /* Delete button hover color */
+    background-color: #ba0e20;
 }
 
-/* Center the form in edit mode */
 #editMode {
     text-align: center;
 }
@@ -125,7 +122,6 @@ button#saveButton:hover {
     background-color: #1e7e34;
 }
 
-/* Style the Cancel button */
 button#cancelButton {
     background-color: #dc3545;
     color: #fff;

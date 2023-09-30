@@ -21,19 +21,27 @@
 
         <div id="user-links">
             {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                    <a href="{% url 'admin:index' %}" class="user-link">Admin Panel</a>
+                    <a href="{% url 'logout' %}" class="user-link">Sign out</a>
+                {% else %}
                 <div class="user-info">
                     <a href="{% url 'user_profile' %}" class="user-link">{{ user.username }}</a>
-                    <a href="{% url 'logout' %}" class="user-link">Log Out</a>
+                    <a href="{% url 'logout' %}" class="user-link">Sign out</a>
                 </div>
+                {% endif %}
             {% else %}
                 <a href="{% url 'login' %}" class="user-link">Login</a>
-                <a href="{% url 'register' %}" class="user-link">Register</a>
+                <a href="{% url 'register' %}" class="user-link">Sign-up</a>
             {% endif %}
         </div>
     </div>
-
-    <!-- Your page content here -->
-    {% block content %}{% endblock %}
+    
+    {% block content %}
+    <!-- content -->
+    <!-- content -->
+    <!-- content -->
+    {% endblock %}
 
     <footer>
         <div class="footer-content">

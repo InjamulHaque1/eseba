@@ -34,20 +34,17 @@ h1 {
     margin-bottom: 40px;
 }
 
-/* Style for the doctor's name */
 h2 {
     font-size: 18px;
     margin-bottom: 20px;
 }
 
-/* Style for form labels */
 label {
     display: block;
     font-size: 16px;
     margin-bottom: 10px;
 }
 
-/* Style for input fields */
 input[type="date"],
 textarea {
     font-family: 'Mooli', sans-serif;
@@ -65,7 +62,6 @@ textarea:focus-visible, textarea:active{
     border: none;
 }
 
-/* Style for the submit button */
 button {
     font-family: 'Mooli', sans-serif;
     background-color: #007bff;

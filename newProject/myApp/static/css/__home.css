@@ -77,12 +77,12 @@
 }
 .card {
   backdrop-filter: blur(10px); 
-  background-color: rgba(119, 235, 255, 0.538); 
   border-radius: 10px;
   padding: 50px;
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
+  background-color: rgba(0, 132, 255, 0.352);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -98,7 +98,6 @@
   background-color: rgba(255, 222, 233, 0.7);
   width: 50%;
   align-content: center;
-  color: #000;
   border: none;
   border-radius: 5px;
   text-decoration: none;
@@ -114,13 +113,11 @@
 
 .card h2 {
   font-size: 24px;
-  color: #222;
 }
 
 .card p {
   font-size: 16px;
   padding: 20px 0px;
-  color: #222;
 }
 
 
