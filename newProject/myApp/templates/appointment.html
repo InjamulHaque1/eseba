@@ -30,9 +30,14 @@
                     
                     <div class="appointment-slots">
                         <h2>Appointment Slots</h2>
-                        <p><strong>Days Available:</strong> {{ doctor.day_slots }}</p>
-                        <p><strong>Time Slots:</strong> {{ doctor.time_slots }}</p>
-                        <p><strong>Available Spots:</strong> {{ doctor.available_spots }}</p>
+                        <p><strong>Available Spots:</strong> {{ doctor.available_spots }}</p>                       
+                        <ul>
+                            {% for slot in doctor.doctortimeslot_set.all %}
+                                <li>
+                                    <strong>Time:</strong> {{ slot.start_time }} - {{ slot.end_time }}
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                     
                     <div class="action-buttons">
@@ -42,10 +47,8 @@
                             <span class="unavailable">Unavailable</span>
                         {% endif %}
                     </div>
-
                 </div>
             {% endfor %}
-
         {% else %}
             <p class="outside">No doctors found.</p>
         {% endif %}

@@ -1,11 +1,7 @@
-/* __create_appointment.css */
-
-/* Style for the main container */
-
 .main-container {
+    text-align: left;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: flex-start;
     min-height: 80vh;
     background-image: url('../image/background.png');
@@ -16,18 +12,17 @@
     color: #000000;
 }
 .container{
-    width: 600px;
+    text-align: left;
+    min-width: 600px;
+    min-height: 580px;
     margin: 50px auto;
-    height: 580px;
-    padding: 50px 100px;
-    border-radius: 5px;
+    padding: 50px;
     color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
     background-color: rgba(139, 199, 255, 0.282);
     backdrop-filter: blur(20px);
 }
-/* Style for the form title */
 h1 {
     font-size: 24px;
     text-align: center;
@@ -35,11 +30,13 @@ h1 {
 }
 
 h2 {
+    text-align: left;
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 label {
+    text-align: left;
     display: block;
     font-size: 16px;
     margin-bottom: 10px;
@@ -67,7 +64,7 @@ button {
     background-color: #007bff;
     color: #fff;
     border: none;
-    margin: 0px 42%;
+    margin: 0px 40%;
     padding: 10px 20px;
     font-size: 18px;
     border-radius: 5px;
@@ -77,4 +74,37 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+.custom-select {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.custom-select label {
+    font-family: 'Mooli', sans-serif;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.custom-select select {
+    font-family: 'Mooli', sans-serif;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.custom-select select option {
+    font-family: 'Mooli', sans-serif;
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+}
+
+.custom-select select:focus {
+    outline: none;
+    border-color: #007bff;
 }

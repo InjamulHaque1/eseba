@@ -63,8 +63,8 @@
 }
 
 .doctor-card{
-    width: 320px;
-    height: 500px;
+    width: 360px;
+    min-height: 550px;
     margin: 10px;
     padding: 20px;
     transition: transform 0.2s;
@@ -82,12 +82,12 @@
     left: -20px;
     top: -20px;
     background-color: white;
-    width: 320px;
+    width: 360px;
     box-shadow: 0 0 10px rgba(69, 69, 69, 1);
 }
 .img1{
     background-color: white;
-    width: 320px;
+    width: 360px;
     position: relative;
     padding: 20px 0px;
     left: -20px;
@@ -101,6 +101,7 @@
 }
 
 .doctor-name {
+    text-align: center;
     font-size: 1.5rem;
     margin: 0;
 }
@@ -139,7 +140,15 @@
 
 .action-buttons {
     text-align: center;
-    margin-top: 20px;
+    position: absolute;
+    bottom: 21px;
+    left: 80px;
+}
+.unavailable{
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    left: 55px;
 }
 
 .create-appointment-button {
@@ -161,4 +170,10 @@
 .outside{
     color: white;
     font-size: 40px;
+}
+.appointment-slots ul,
+.appointment-slots li{
+    text-decoration: none;
+    list-style: none;
+    padding: 5px 0px;
 }

@@ -6,18 +6,8 @@ from django.shortcuts import (
     redirect, 
     render
 )
-from django.shortcuts import (
-    get_object_or_404, 
-    redirect, 
-    render
-)
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import (
-    authenticate, 
-    login as auth_login, 
-    logout as auth_logout
-)
 from django.contrib.auth import (
     authenticate, 
     login as auth_login, 
@@ -165,7 +155,6 @@ def cart(request):
 @login_required
 def add_to_cart(request, product_id):
     
-    
     if request.method == 'POST':
         user = request.user
         product = get_object_or_404(MedicalAccessories, pk=product_id)
@@ -286,28 +275,38 @@ def create_appointment(request, doctor_id):
     
     if request.method == 'POST':
         appointment_date = request.POST['appointment_date']
+        description = request.POST['description']
+        appointment_time_id = request.POST['appointment_time']
+        time_slot = DoctorTimeSlot.objects.get(id=appointment_time_id, doctor=doctor)
         
+        selected_date = timezone.datetime.strptime(appointment_date, '%Y-%m-%d').date()
+
+        today = timezone.now().date()
+        if selected_date < today:
+            messages.error(request, "Please select an upcoming date.")
+            return redirect(reverse('create_appointment', args=[doctor_id]))
+
         if doctor.available_spots == 0:
             doctor.status = False
             doctor.save()
-            
-        if doctor.available_spots > 0 and doctor.status == True:
-            appointment = Appointment(user=request.user, doctor=doctor, appointment_date=appointment_date)
-            appointment.save()
-            doctor.available_spots -= 1
-            doctor.save()
-            messages.success(request, "Successfull appointment made")
-            return redirect(reverse('appointment'))
+        
+        appointment = Appointment(
+            user=request.user,
+            doctor=doctor,
+            appointment_date=appointment_date,
+            description=description,
+            doctor_time_slot=time_slot
+        )
+        appointment.save()
+        doctor.available_spots -= 1
+        doctor.save()
+        messages.success(request, "Successful appointment made")
+        return redirect(reverse('appointment'))
         
     context ={
         'doctor': doctor
-        }
+    }
     return render(request, 'create_appointment.html', context)
-
-@login_required
-def appointment_list(request):
-    appointments = Appointment.objects.filter(user=request.user)
-    return render(request, 'appointment_list.html', {'appointments': appointments})
 
 def about(request):
     return render(request, "about.html")
