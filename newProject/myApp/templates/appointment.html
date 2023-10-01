@@ -25,12 +25,12 @@
                     <div class="doctor-info">
                         <h1 class="doctor-name">{{ doctor.name }}</h1>
                         <p class="doctor-specialty">{{ doctor.specialty }}</p>
-                        <p class="doctor-cost">Booking price: {{ doctor.cost }}</p>
+                        <p class="doctor-cost">Payment: {{ doctor.cost }}</p>
                     </div>
                     
                     <div class="appointment-slots">
                         <h2>Appointment Slots</h2>
-                        <p><strong>Available Spots:</strong> {{ doctor.available_spots }}</p>                       
+                        <p><strong>Available spots:</strong> {{ doctor.available_spots }}</p>                       
                         <ul>
                             {% for slot in doctor.doctortimeslot_set.all %}
                                 <li>

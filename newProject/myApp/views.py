@@ -256,9 +256,23 @@ def doctor_search(request):
     query_d = request.GET.get('q')
     
     if query_d:
-        doctors = Doctor.objects.filter(
-            Q(name__icontains=query_d)
-        )
+        words = query_d.split()
+        name_query = Q()
+        specialty_query = Q()
+        status_query = Q()
+
+        for word in words:
+            if word.lower() == "available":
+                status_query = Q(status=True)
+                
+            elif word.lower() == "unavailable":
+                status_query = Q(status=False)
+                
+            else:
+                name_query |= Q(name__icontains=word)
+                specialty_query |= Q(specialty__icontains=word)
+
+        doctors = Doctor.objects.filter(name_query | specialty_query, status_query)
     else:
         messages.error(request, "Search bar was empty")
         doctors = Doctor.objects.all()
