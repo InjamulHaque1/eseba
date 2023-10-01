@@ -9,7 +9,7 @@ body {
     font-family: 'Mooli', sans-serif;
     display: flex;
     min-height: 100vh;
-    align-items: stretch;
+    align-items: center;
     text-align: center;
     background-image: url(../image/background.png);
     background-size: cover;
@@ -23,6 +23,7 @@ body {
 .topnav {
     position: sticky;
     top: 0;
+    width: 100%;
     z-index: 999;
     background-color: rgba(97, 154, 212, 0.428); 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -119,6 +120,7 @@ body {
 }
 
 footer {
+    width: 100%;
     color: #fff;
     text-align: center;
     

@@ -1,17 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
-.main-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    background-image: url('../image/background.png');
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #000000;
-}
 
 .search-container {
     margin: 20px 0px 50px;
@@ -72,11 +59,13 @@
     overflow: hidden;
     position: relative;
     text-align: justify;
+    color: #000;
     box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
     background-color: rgba(221, 221, 221, 0.594);
     transition: transform 0.3s ease-in-out; 
 }
 .doctor-info{
+    color: #000;
     position: relative;
     padding: 20px;
     left: -20px;
@@ -175,5 +164,5 @@
 .appointment-slots li{
     text-decoration: none;
     list-style: none;
-    padding: 5px 0px;
+    padding: 5px 0px 10px 10px;
 }
