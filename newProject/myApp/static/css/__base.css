@@ -68,7 +68,6 @@ body {
 .user-info {
     display: flex;
     align-items: center;
-    backdrop-filter: blur(10px);
     border-radius: 5px;
     margin-right: 10px;
     color: #fff;

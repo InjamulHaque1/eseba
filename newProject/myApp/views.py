@@ -74,6 +74,7 @@ def user_profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
     profile_form = UserProfileForm(instance=user_profile)
     user_form = UserForm(instance=request.user)
+    appointments = Appointment.objects.filter(user=request.user)
 
     if request.method == "POST":
         if "delete_account" in request.POST:
@@ -97,6 +98,7 @@ def user_profile(request):
         'user_profile': user_profile,
         'profile_form': profile_form,
         'user_form': user_form,
+        'appointments': appointments,
         }
     return render(request, 'user_profile.html', context)
 
@@ -321,6 +323,20 @@ def create_appointment(request, doctor_id):
         'doctor': doctor
     }
     return render(request, 'create_appointment.html', context)
+
+def cancel_appointment(request, appointment_id, doctor_id):
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+    doctor = get_object_or_404(Doctor, id=doctor_id)
+
+    if appointment.user == request.user:
+        doctor.available_spots += 1
+        doctor.save()
+        appointment.delete()
+        messages.success(request, "Appointment canceled successfully.")
+    else:
+        messages.error(request, "You are not authorized to cancel this appointment.")
+
+    return redirect('user_profile')
 
 def about(request):
     return render(request, "about.html")
