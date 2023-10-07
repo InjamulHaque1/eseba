@@ -38,13 +38,15 @@ def login(request):
 def register(request):
     if request.method == "POST":
         u_name = request.POST["u_name"]
+        u_fname = request.POST["u_fname"]
+        u_lname = request.POST["u_lname"]
         u_email = request.POST["u_email"]
         u_password = request.POST["u_password"]
         u_age = request.POST["u_age"]
         u_address = request.POST["u_address"]
         u_mobile = request.POST["u_mobile"]
         u_gender = request.POST["u_gender"]
-        user = User.objects.create_user(username=u_name, email=u_email, password=u_password)
+        user = User.objects.create_user(username=u_name, first_name=u_fname, last_name=u_lname, email=u_email, password=u_password)
         user.save()
         user_profile = UserProfile(user=user, age=u_age, address=u_address, mobile=u_mobile, gender=u_gender)
         user_profile.save()

@@ -5,7 +5,14 @@ from django.db.models.signals import pre_delete
 from django.utils import timezone
     
 class UserProfile(models.Model):
+    def __str__(self):
+        return self.fullname()
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
+    def fullname(self):
+        return f"{self.user.first_name} {self.user.last_name}"
+    
     age = models.IntegerField()
     address = models.CharField(max_length=255)
     mobile = models.CharField(max_length=15)
@@ -14,6 +21,7 @@ class UserProfile(models.Model):
         ('Female', 'Female'),
     )
     gender = models.CharField(max_length=10, choices=GENDER)
+    
 
 @receiver(pre_delete, sender=User)
 def delete_user_profile(sender, instance, **kwargs):
@@ -24,6 +32,9 @@ def delete_user_profile(sender, instance, **kwargs):
         pass
     
 class MedicalAccessories(models.Model):
+    def __str__(self):
+        return self.p_name
+    
     p_image = models.ImageField()
     p_name = models.CharField(max_length=100)
     p_description = models.CharField(max_length=1000)
@@ -36,14 +47,22 @@ class MedicalAccessories(models.Model):
     p_count = models.IntegerField()
     v_name = models.CharField(max_length=100)
     v_description = models.CharField(max_length=100)
+    
 
 class CartItem(models.Model):
+    def __str__(self):
+        return self.user.username
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     accessory = models.ForeignKey(MedicalAccessories, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     total_cost = models.IntegerField(null = True)
     
+    
 class Bill(models.Model):
+    def __str__(self):
+        return self.customer.username
+    
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
@@ -51,7 +70,10 @@ class Bill(models.Model):
     accessory = models.ForeignKey(MedicalAccessories, on_delete=models.CASCADE)
     
     
-class Doctor(models.Model):
+class Doctor(models.Model): 
+    def __str__(self):
+        return self.name
+    
     image = models.ImageField()
     name = models.CharField(max_length=255)
     specialty = models.CharField(max_length=255)
@@ -60,11 +82,17 @@ class Doctor(models.Model):
     available_spots = models.PositiveIntegerField()
 
 class DoctorTimeSlot(models.Model):
+    def __str__(self):
+        return self.doctor.name
+    
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     start_time = models.TimeField()
     end_time = models.TimeField()
 
 class Appointment(models.Model):
+    def __str__(self):
+        return self.user.username
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     doctor_time_slot = models.ForeignKey(DoctorTimeSlot, on_delete=models.CASCADE)
