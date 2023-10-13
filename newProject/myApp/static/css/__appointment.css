@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
 
+.main-container {
+    min-height: 100vh;
+}
+
 .search-container {
     margin: 20px 0px 50px;
     display: flex;
@@ -43,7 +47,7 @@
 .doctor-profile-container {
     display: flex;
     padding: 30px 80px;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
     border-radius: 5px;
