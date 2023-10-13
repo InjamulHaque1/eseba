@@ -12,8 +12,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Application definition
+LOGIN_URL = 'custom_error'
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'image/favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/__error.css' %}" />
+    <title>Error</title>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-message">You need to login to access this feature.</div>
+        <div class="button-container">
+            <a href="{% url 'home' %}" class="button">Home</a>
+            <a href="{% url 'login' %}" class="button">Login</a>
+        </div>
+    </div>
+</body>
+</html>

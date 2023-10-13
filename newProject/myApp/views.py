@@ -15,6 +15,10 @@ from django.contrib.auth import (
 )
 from .forms import UserProfileForm, UserForm
 from django.db.models import Q 
+from django.shortcuts import render
+
+def custom_error(request,):
+    return render(request, 'error.html')
 
 def home(request):
     return render(request, "home.html")
@@ -141,6 +145,7 @@ def product_search(request):
 
 @login_required
 def cart(request):
+    
     user = request.user
     cart_items = CartItem.objects.filter(user=user)
 
@@ -158,7 +163,7 @@ def cart(request):
 
 @login_required
 def add_to_cart(request, product_id):
-    
+
     if request.method == 'POST':
         user = request.user
         product = get_object_or_404(MedicalAccessories, pk=product_id)
@@ -289,8 +294,8 @@ def doctor_search(request):
 
 @login_required
 def create_appointment(request, doctor_id):
+
     doctor = Doctor.objects.get(id=doctor_id)
-    
     if request.method == 'POST':
         appointment_date = request.POST['appointment_date']
         description = request.POST['description']
