@@ -14,6 +14,9 @@ ALLOWED_HOSTS = []
 
 LOGIN_URL = 'custom_error'
 
+RECAPTCHA_PUBLIC_KEY = '6Le70ZsoAAAAAF4WA3ho7OA4kBDPrMrGI9Jb7ADF'
+RECAPTCHA_PRIVATE_KEY = '6Le70ZsoAAAAAPLuSBDmG1hBmRcLzwzg3YdF34cq'
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -22,7 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myApp'
+    'myApp',
+    'captcha',
 ]
 
 MIDDLEWARE = [

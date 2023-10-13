@@ -15,7 +15,7 @@
   }
 .register-container {
     width: 600px;
-    height: 900px;
+    height: 950px;
     margin: 50px auto;
     padding: 50px 100px;
     border-radius: 5px;
@@ -98,3 +98,8 @@
     transform: scale(1.1);
   }
   
+  .captcha_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }

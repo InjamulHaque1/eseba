@@ -1,7 +1,7 @@
 .login-container {
     width: 600px;
     margin: 100px auto;
-    height: 380px;
+    height: 480px;
     padding: 50px 100px;
     border-radius: 5px;
     color: white;
@@ -95,4 +95,10 @@ select.form-control {
     color: #fff;
     border-color: #fff; 
     transform: scale(1.1);
+  }
+
+  .captcha_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
   }
