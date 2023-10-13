@@ -10,11 +10,18 @@
 </head>
 <body>
     <div class="error-container">
-        <div class="error-message">You need to login to access this feature.</div>
-        <div class="button-container">
-            <a href="{% url 'home' %}" class="button">Home</a>
-            <a href="{% url 'login' %}" class="button">Login</a>
-        </div>
+        {% if user.is_authenticated %}
+            <div class="error-message">Oops. Something wrong occured</div>
+            <div class="button-container">
+                <a href="{% url 'home' %}" class="button">Home</a>
+            </div>
+        {% else %}
+            <div class="error-message">You need to login to access this feature.</div>
+            <div class="button-container">
+                <a href="{% url 'home' %}" class="button">Home</a>
+                <a href="{% url 'login' %}" class="button">Login</a>
+            </div>  
+        {% endif %}
     </div>
 </body>
 </html>

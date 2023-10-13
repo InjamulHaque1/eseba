@@ -83,8 +83,8 @@ class Doctor(models.Model):
 
 class DoctorTimeSlot(models.Model):
     def __str__(self):
-        return self.doctor.name
-    
+        return f"{self.doctor.name} ({self.start_time} - {self.end_time})"
+  
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     start_time = models.TimeField()
     end_time = models.TimeField()
