@@ -1,0 +1,91 @@
+/* Additional CSS Styles */
+.main-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.search-container {
+    margin: 20px 0px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container form {
+    font-family: 'Mooli', sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.search-container input[type="text"] {
+    font-family: 'Mooli', sans-serif;
+    padding: 15px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none; /* Remove input field border on focus */
+}
+
+.search-container button {
+    font-family: 'Mooli', sans-serif;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    color: #000;
+    width: 400px;
+    min-height: 400px;
+    margin: 10px;
+    padding: 20px;
+    transition: transform 0.2s;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
+    background-color: rgba(222, 255, 254, 0.277);
+}
+
+.hospital-card {
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px;
+    font-size: 20px;
+}
+.blood-sample-card {
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px;
+    background-color: rgba(221, 221, 221, 0.454);
+    backdrop-filter: blur(20px);
+}
+
+.hospital-name{
+    font-size: 26px;
+}
+.blood-group {
+    font-size: 20px;
+}
+
+.hospital-location, .hospital-capacity{
+    font-size: 16px;
+}
+.blood-quantity, .blood-expiry-date {
+    font-size: 16px;
+}
+
+.outside {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff0000;
+}

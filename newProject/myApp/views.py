@@ -141,7 +141,11 @@ def product_search(request):
         )
     else:
         messages.error(request, "Search bar was empty")
-        products = MedicalAccessories.objects.all()
+        return redirect('products')
+    
+    if not products:
+        messages.error(request, "No product found")
+        return redirect('products')
 
     context = {
         'products': products,
@@ -290,7 +294,11 @@ def doctor_search(request):
         doctors = Doctor.objects.filter(name_query | specialty_query, status_query)
     else:
         messages.error(request, "Search bar was empty")
-        doctors = Doctor.objects.all()
+        return redirect('appointment')
+        
+    if not doctors:
+        messages.error(request, "No doctors found.")
+        return redirect('appointment')
 
     context = {
         'doctors': doctors,
@@ -351,8 +359,34 @@ def cancel_appointment(request, appointment_id, doctor_id):
 
     return redirect('user_profile')
 
+def emergency(request):
+    hospitals = Hospital.objects.all()
+    context = {
+        'hospitals': hospitals
+    }
+    return render(request, "emergency.html", context)
+
+def blood_search(request):
+    query = request.GET.get('q')
+    hospitals = Hospital.objects.all()
+
+    if query:
+        hospitals = hospitals.filter(
+            Q(hospital_name__icontains=query) | Q(location__icontains=query) 
+            | Q(blood_samples__blood_group__iexact=query)
+        ).distinct() 
+    else:
+        messages.error(request, "Search bar was empty")
+        return redirect('emergency')
+        
+    if not hospitals:
+        messages.error(request, "No hospitals found.")
+        return redirect('emergency')
+
+    context = {
+        'hospitals': hospitals,
+    }
+    return render(request, 'emergency.html', context)
+
 def about(request):
     return render(request, "about.html")
-
-def emergency(request):
-    return render(request, "emergency.html")

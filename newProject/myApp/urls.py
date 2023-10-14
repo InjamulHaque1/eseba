@@ -34,6 +34,7 @@ urlpatterns = [
     
     #emergency urls not done
     path('emergency/', views.emergency, name='emergency'),
+    path('blood_search/', views.blood_search, name='blood_search'),
     
     #error handaling urls
     path('custom_error/', views.custom_error, name='custom_error'),

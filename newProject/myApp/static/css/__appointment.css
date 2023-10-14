@@ -162,6 +162,7 @@
 }
 .outside{
     color: white;
+    font-weight: bold;
     font-size: 40px;
 }
 .appointment-slots ul,
