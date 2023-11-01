@@ -47,16 +47,16 @@
 .doctor-profile-container {
     display: flex;
     padding: 30px 80px;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
     border-radius: 5px;
 }
 
 .doctor-card{
-    width: 360px;
+    width: 340px;
     min-height: 550px;
-    margin: 10px;
+    margin: 20px;
     padding: 20px;
     transition: transform 0.2s;
     border-radius: 5px;
@@ -80,17 +80,18 @@
 }
 .img1{
     background-color: white;
-    width: 360px;
+    width: 340px;
     position: relative;
     padding: 20px 0px;
     left: -20px;
     top: -20px;
 }
 .img1 img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     display: block;
     margin: 0 auto;
+    border-radius: 50%;
 }
 
 .doctor-name {
