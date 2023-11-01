@@ -1,6 +1,14 @@
 # eseba
-
-Used ReCaptcha V2
+    Package          Version
+    ---------------- -------
+    python           3.12.0
+    asgiref          3.7.2
+    Django           4.2.6
+    django-recaptcha 3.0.0
+    Pillow           10.0.1
+    pip              23.3.1
+    sqlparse         0.4.4
+    tzdata           2023.3
 
 
 -----Error handling-----
