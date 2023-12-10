@@ -27,10 +27,11 @@
                         <p class="doctor-specialty">{{ doctor.specialty }}</p>
                         <p class="doctor-cost">Payment: {{ doctor.cost }}</p>
                     </div>
-                    
                     <div class="appointment-slots">
+                        <div class="appointment-slots">
+                            <strong>Patient bookings left: {{doctor.available_spots}}</strong>
+                        </div>
                         <h2>Appointment Slots</h2>
-                        <p><strong>Available spots:</strong> {{ doctor.available_spots }}</p>                       
                         <ul>
                             {% for slot in doctor.doctortimeslot_set.all %}
                                 <li>
@@ -38,13 +39,24 @@
                                 </li>
                             {% endfor %}
                         </ul>
+                        
+                        {% if not doctor.status %}
+                            {% if next_available_slot %}
+                                <div class="next-available-slot">
+                                    <p><strong>Next Available Slot:</strong> {{ next_available_slot.start_time }} - {{ next_available_slot.end_time }}</p>
+                                    <a class="create-appointment-button" href="{% url 'create_appointment' doctor.id %}">Create Appointment</a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
                     </div>
-                    
                     <div class="action-buttons">
                         {% if doctor.available_spots > 0 and doctor.status %}
                             <a class="create-appointment-button" href="{% url 'create_appointment' doctor.id %}">Create Appointment</a>
                         {% else %}
                             <span class="unavailable">Unavailable</span>
+                            {% if not doctor.status %}
+                                <a class="create-appointment-button" style="position:relative; left: -15px; background-color:aqua;" href="{% url 'create_appointment' doctor.id %}">Additional Information</a>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

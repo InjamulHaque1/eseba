@@ -308,20 +308,32 @@ def doctor_search(request):
 
 @login_required
 def create_appointment(request, doctor_id):
-
     doctor = Doctor.objects.get(id=doctor_id)
     if request.method == 'POST':
         appointment_date = request.POST['appointment_date']
         description = request.POST['description']
         appointment_time_id = request.POST['appointment_time']
-        time_slot = DoctorTimeSlot.objects.get(id=appointment_time_id, doctor=doctor)
-        
+        time_slot = DoctorTimeSlot.objects.get(id=appointment_time_id, doctor=doctor)        
         selected_date = timezone.datetime.strptime(appointment_date, '%Y-%m-%d').date()
-
         today = timezone.now().date()
-        if selected_date < today:
-            messages.error(request, "Please select an upcoming date.")
-            return redirect(reverse('create_appointment', args=[doctor_id]))
+
+        if not doctor.status:
+            doctor.available_spots = doctor.available_spots + 1
+            doctor.status = True
+            doctor.save()
+            # Doctor is unavailable
+            if selected_date < doctor.next_available_appointment_date:
+                messages.error(request, f"Choose a date after:{doctor.next_available_appointment_date.strftime('%d/%B/%Y')}")
+                doctor.status = False
+                doctor.save()
+                return redirect(reverse('create_appointment', args=[doctor_id]))
+        else:
+            # Doctor is available
+            if selected_date < today:
+                doctor.status = False
+                doctor.save()
+                messages.error(request, "Please select an upcoming date.")
+                return redirect(reverse('create_appointment', args=[doctor_id]))
 
         if doctor.available_spots == 0:
             doctor.status = False
@@ -336,6 +348,7 @@ def create_appointment(request, doctor_id):
         )
         appointment.save()
         doctor.available_spots -= 1
+        doctor.status = False
         doctor.save()
         messages.success(request, "Successful appointment made")
         return redirect(reverse('appointment'))
@@ -344,6 +357,7 @@ def create_appointment(request, doctor_id):
         'doctor': doctor
     }
     return render(request, 'create_appointment.html', context)
+
 
 def cancel_appointment(request, appointment_id, doctor_id):
     appointment = get_object_or_404(Appointment, id=appointment_id)

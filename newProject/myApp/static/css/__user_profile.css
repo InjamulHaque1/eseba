@@ -9,24 +9,16 @@
     position: relative;
     text-align: left;
     color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
-    background-color: rgba(139, 199, 255, 0.282);
-    backdrop-filter: blur(20px);
 }
 
 .containerapp {
     width: 700px;
     min-height: 100px;
-    max-height: 800px;
     margin: 50px;
     padding: 50px 100px;
     text-align: left;
     color: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
-    background-color: rgba(139, 199, 255, 0.282);
-    backdrop-filter: blur(20px);
 }
 h2 {
     text-align: center;
@@ -166,12 +158,16 @@ button#cancelButton:hover {
     border-radius: 5px;
     padding: 10px 0px 10px 30px;
     margin: 10px 0 20px;
-    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
+    background-color: rgba(139, 199, 255, 0.282);
+    backdrop-filter: blur(20px);
 }
 .info{
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px 0px 10px 30px;
     margin: 10px 0 20px;
-    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
+    background-color: rgba(139, 199, 255, 0.282);
+    backdrop-filter: blur(20px);
 }

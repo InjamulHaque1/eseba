@@ -9,13 +9,18 @@
 {% block content %}
 <div class="main-container">
     <div class="container">
-        <h1>Appointment form</h1>
-        <h2>Name of the doctor: {{ doctor.name }}</h2>
-    
+        <h1 style="color: aqua;">Appointment form</h1>
+            {% if doctor.next_available_appointment_date %}
+                <p style="color: aqua; text-align:center;">You can only choose date's after the doctor is available</p><br>
+            {% endif %}
+        <h2>Name of the doctor: {{ doctor.name }}</h2>   
         <form method="post" action="">
             {% csrf_token %}
             <input type="hidden" name="doctor_id" value="{{ doctor.id }}">
-            
+            {% if doctor.next_available_appointment_date %}
+                <p><strong>Doctor is available after:</strong> {{ doctor.next_available_appointment_date }}</p><br>
+            {% endif %}
+
             <div class="form-group">
                 <label for="appointment_date">Select Appointment Date:</label>
                 <input type="date" id="appointment_date" name="appointment_date" required>

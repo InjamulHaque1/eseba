@@ -55,7 +55,7 @@
 
 .doctor-card{
     width: 340px;
-    min-height: 550px;
+    min-height: 580px;
     margin: 20px;
     padding: 20px;
     transition: transform 0.2s;
@@ -115,14 +115,6 @@
     margin: 5px 0;
 }
 
-.available {
-    color: #009018; 
-}
-
-.unavailable {
-    color: #ff0000; 
-}
-
 .appointment-slots {
     flex: 1;
 }
@@ -136,15 +128,20 @@
     text-align: center;
     position: absolute;
     bottom: 21px;
-    left: 80px;
+    left: 70px;
 }
 .unavailable{
+    top: -60px;
+    color: #ff0000; 
     text-align: center;
     position: absolute;
     bottom: 10px;
-    left: 55px;
+    left: 40px;
+    font-size: 20px;
 }
-
+.available {
+    color: #009018; 
+}
 .create-appointment-button {
     font-family: 'Mooli', sans-serif;
     background-color: #00ff2a; 

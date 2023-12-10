@@ -80,6 +80,7 @@ class Doctor(models.Model):
     status = models.BooleanField(default=True)
     cost = models.IntegerField()
     available_spots = models.PositiveIntegerField()
+    next_available_appointment_date = models.DateField(null=True, blank=True)
 
 class DoctorTimeSlot(models.Model):
     def __str__(self):
@@ -99,6 +100,7 @@ class Appointment(models.Model):
     description = models.CharField(max_length=1000)
     appointment_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
+
 
 class Hospital(models.Model):
     hospital_name = models.CharField(max_length=100)
