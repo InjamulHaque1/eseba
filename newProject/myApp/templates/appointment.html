@@ -55,7 +55,7 @@
                         {% else %}
                             <span class="unavailable">Unavailable</span>
                             {% if not doctor.status %}
-                                <a class="create-appointment-button" style="position:relative; left: -15px; background-color:aqua;" href="{% url 'create_appointment' doctor.id %}">Additional Information</a>
+                                <a class="create-appointment-button" style="position:relative; left: -10px; background-color:aqua;" href="{% url 'create_appointment' doctor.id %}">Additional Information</a>
                             {% endif %}
                         {% endif %}
                     </div>
