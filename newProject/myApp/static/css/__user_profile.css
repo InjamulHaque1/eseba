@@ -1,33 +1,79 @@
-.row-container {
-    display: flex;
-}
 .containerinfo {
+    float: left;
     width: 800px;
     min-height: 500px;
-    margin: 50px;
-    padding: 50px 100px;
+    padding: 50px;
     position: relative;
     text-align: left;
     color: white;
 }
 
 .containerapp {
-    width: 700px;
+    display: flex;
     min-height: 100px;
-    margin: 50px;
-    padding: 50px 100px;
-    text-align: left;
+    padding: 10px;
+    width: 1700px;
     color: white;
     border-radius: 10px;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.containerbill {
+    display: flex;
+    min-height: 100px;
+    padding: 10px;
+    width: 1700px;
+    color: white;
+    border-radius: 10px;
+    flex-direction: row;
+    justify-content:center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.bill{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width:450px;
+    padding: 10px;
+    margin:20px;
+    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
+    background-color: rgba(139, 199, 255, 0.282);
+    backdrop-filter: blur(20px);
+}
+.appointment {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 350px;
+    padding: 10px 20px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
+    background-color: rgba(139, 199, 255, 0.282);
+    backdrop-filter: blur(20px);
+    white-space: normal;
+    word-wrap: break-word;
+}
+.info{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 0px 10px 30px;
+    margin: 10px 0 20px;
+    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
+    background-color: rgba(139, 199, 255, 0.282);
+    backdrop-filter: blur(20px);
 }
 h2 {
     text-align: center;
     font-size: 24px;
-    margin-bottom: 20px;
+    padding-top: 20px;
 }
 
 p {
     padding: 15px 0px;
+}
+strong{
+    color: aquamarine;
 }
 
 label {
@@ -145,29 +191,10 @@ button#cancelButton:hover {
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease;
-    margin: 0px 25%;
     width: 225px;
+    margin: 20px 12%;
 }
 
 .cancel-appointment:hover {
     background-color: #c82333;
-}
-
-.appointment {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px 0px 10px 30px;
-    margin: 10px 0 20px;
-    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
-    background-color: rgba(139, 199, 255, 0.282);
-    backdrop-filter: blur(20px);
-}
-.info{
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px 0px 10px 30px;
-    margin: 10px 0 20px;
-    box-shadow: 0 0 10px rgba(69, 69, 69, 0.355);
-    background-color: rgba(139, 199, 255, 0.282);
-    backdrop-filter: blur(20px);
 }

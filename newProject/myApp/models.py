@@ -68,7 +68,7 @@ class Bill(models.Model):
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(default=timezone.now)
     accessory = models.ForeignKey(MedicalAccessories, on_delete=models.CASCADE)
-    
+
     
 class Doctor(models.Model): 
     def __str__(self):
@@ -81,6 +81,7 @@ class Doctor(models.Model):
     cost = models.IntegerField()
     available_spots = models.PositiveIntegerField()
     next_available_appointment_date = models.DateField(null=True, blank=True)
+
 
 class DoctorTimeSlot(models.Model):
     def __str__(self):
@@ -100,8 +101,9 @@ class Appointment(models.Model):
     description = models.CharField(max_length=1000)
     appointment_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
-
-
+    serial_number = models.PositiveIntegerField(default=0)
+    
+    
 class Hospital(models.Model):
     hospital_name = models.CharField(max_length=100)
     location = models.CharField(max_length=200)

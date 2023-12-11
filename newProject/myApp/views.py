@@ -87,6 +87,7 @@ def user_profile(request):
     profile_form = UserProfileForm(instance=user_profile)
     user_form = UserForm(instance=request.user)
     appointments = Appointment.objects.filter(user=request.user)
+    bills = Bill.objects.filter(customer=request.user)
 
     if request.method == "POST":
         if "delete_account" in request.POST:
@@ -111,7 +112,8 @@ def user_profile(request):
         'profile_form': profile_form,
         'user_form': user_form,
         'appointments': appointments,
-        }
+        'bills': bills,
+    }
     return render(request, 'user_profile.html', context)
 
 @login_required
@@ -309,11 +311,12 @@ def doctor_search(request):
 @login_required
 def create_appointment(request, doctor_id):
     doctor = Doctor.objects.get(id=doctor_id)
+    
     if request.method == 'POST':
         appointment_date = request.POST['appointment_date']
         description = request.POST['description']
         appointment_time_id = request.POST['appointment_time']
-        time_slot = DoctorTimeSlot.objects.get(id=appointment_time_id, doctor=doctor)        
+        time_slot = DoctorTimeSlot.objects.get(id=appointment_time_id, doctor=doctor)
         selected_date = timezone.datetime.strptime(appointment_date, '%Y-%m-%d').date()
         today = timezone.now().date()
 
@@ -323,40 +326,46 @@ def create_appointment(request, doctor_id):
             doctor.save()
             # Doctor is unavailable
             if selected_date < doctor.next_available_appointment_date:
-                messages.error(request, f"Choose a date after:{doctor.next_available_appointment_date.strftime('%d/%B/%Y')}")
-                doctor.status = False
-                doctor.save()
+                messages.error(request, f"Choose a date after: {doctor.next_available_appointment_date.strftime('%d/%B/%Y')}")
                 return redirect(reverse('create_appointment', args=[doctor_id]))
         else:
-            # Doctor is available
             if selected_date < today:
-                doctor.status = False
-                doctor.save()
                 messages.error(request, "Please select an upcoming date.")
                 return redirect(reverse('create_appointment', args=[doctor_id]))
 
         if doctor.available_spots == 0:
             doctor.status = False
-            doctor.save()
-        
+        else:
+            doctor.status = True
+        doctor.save()
+
+        serial_number = Appointment.objects.filter(doctor=doctor).count() + 1
+
         appointment = Appointment(
             user=request.user,
             doctor=doctor,
             appointment_date=appointment_date,
             description=description,
-            doctor_time_slot=time_slot
+            doctor_time_slot=time_slot,
+            serial_number=serial_number
         )
         appointment.save()
+
         doctor.available_spots -= 1
-        doctor.status = False
+        if doctor.available_spots == 0:
+            doctor.status = False
+        else:
+            doctor.status = True
         doctor.save()
+
         messages.success(request, "Successful appointment made")
         return redirect(reverse('appointment'))
-        
+
     context ={
         'doctor': doctor
     }
     return render(request, 'create_appointment.html', context)
+
 
 
 def cancel_appointment(request, appointment_id, doctor_id):
@@ -366,6 +375,7 @@ def cancel_appointment(request, appointment_id, doctor_id):
     if appointment.user == request.user:
         doctor.available_spots += 1
         doctor.save()
+        appointment.serial_number -= 1
         appointment.delete()
         messages.success(request, "Appointment canceled successfully.")
     else:
