@@ -1,4 +1,4 @@
-# eseba
+# eseba dependencies
     Package          Version
     ---------------- -------
     python           3.12.0
@@ -21,6 +21,8 @@
   2.	Login (captcha)
   3.	Edit (UserProfile and User)
   4.	Delete (UserProfile and User)
+  5.	Appointment History
+  6.	Payment History
 
 
 -----Product-----
@@ -34,6 +36,7 @@
   1.	Search doctors(status, name, speciality)
   2.	Register
   3.	Cancel (in profile)
+  4.	Support for unavailable doctors
 
 -----Emergency-----
   1. Search blood in hospital
