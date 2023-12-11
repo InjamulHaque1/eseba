@@ -22,8 +22,8 @@
       </tr>
     </thead>
     <tbody>
-      {% for item in cart_items %}
       <h1>Your Shopping Cart</h1>
+      {% for item in cart_items %}
           <tr>
             <td>{{ item.accessory.p_name }}</td>
             <td>{{ item.accessory.p_cost }} Tk</td>

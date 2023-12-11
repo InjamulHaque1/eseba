@@ -81,18 +81,18 @@ def register(request):
         form = Captcha()
 
     return render(request, "register.html", {"form": form})
+from django.db.models import Sum
 
-@login_required
 def user_profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
     profile_form = UserProfileForm(instance=user_profile)
     user_form = UserForm(instance=request.user)
     appointments = Appointment.objects.filter(user=request.user)
-    bills = Bill.objects.filter(customer=request.user)
-
+    
+    # Use a different name for the annotated field, e.g., 'total_item_cost'
     bills = Bill.objects.filter(customer=request.user).prefetch_related(
         Prefetch('billitem_set', queryset=BillItem.objects.select_related('accessory'))
-    )
+    ).annotate(total_item_cost=Sum('billitem__total_cost'))
 
     if request.method == "POST":
         if "delete_account" in request.POST:
@@ -120,6 +120,7 @@ def user_profile(request):
         'bills': bills,
     }
     return render(request, 'user_profile.html', context)
+
 
 @login_required
 def logout(request):
@@ -255,8 +256,8 @@ def checkout(request):
                 bill=new_bill,
                 accessory=item.accessory,
                 quantity=item.quantity,               
+                total_cost = item.total_cost
             )
-            new_bill.total_cost += item.total_cost
 
     new_bill.save()
     cart_items.delete()

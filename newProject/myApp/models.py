@@ -71,6 +71,7 @@ class BillItem(models.Model):
     bill = models.ForeignKey(Bill, on_delete=models.CASCADE)
     accessory = models.ForeignKey(MedicalAccessories, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+    total_cost = models.DecimalField(max_digits=10, decimal_places=2)
 
 class Doctor(models.Model): 
     def __str__(self):

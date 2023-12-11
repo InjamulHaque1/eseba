@@ -7,8 +7,8 @@
 {% block title %}User Profile{% endblock %}
 
 {% block content %}
-<h2>User Profile</h2>
 <div class="containerinfo" id="userProfileView" >
+    <h2>User Profile</h2>
     <div class="info">
         <p><strong>Username:</strong> {{ user_profile.user.username }}</p>
         <p><strong>Name:</strong> {{ user_profile.fullname }} </p>
@@ -72,13 +72,13 @@
     <div class="bill">
         <p><strong>Customer Name:</strong> {{ bill.customer.username }}</p>
         <p><strong>Items:</strong>
-            <ul>
+            <ul style="list-style: none;">
                 {% for bill_item in bill.billitem_set.all %}
-                    <li>{{ bill_item.accessory.p_name }} ({{ bill_item.quantity }}x{{ bill_item.accessory.p_cost }}={{ bill_item.total_cost }}tk)</li>
+                    <li>{{ bill_item.accessory.p_name }} ({{ bill_item.quantity }}x{{ bill_item.accessory.p_cost }}={{bill_item.total_cost }}tk)</li>
                 {% endfor %}
             </ul>
         </p>
-        <p><strong>Total Cost:</strong> {{ bill.total_cost }}tk</p>
+        <p><strong>Total Cost:</strong> {{ bill.total_item_cost }}tk</p>
         <p><strong>Created At:</strong> {{ bill.created_at }}</p>
     </div>
     {% endfor %}
