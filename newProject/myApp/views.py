@@ -1,5 +1,6 @@
 from django.utils import timezone
 from django.urls import reverse
+from django.db.models import Prefetch
 from .models import *
 from django.shortcuts import (
     get_object_or_404, 
@@ -88,6 +89,10 @@ def user_profile(request):
     user_form = UserForm(instance=request.user)
     appointments = Appointment.objects.filter(user=request.user)
     bills = Bill.objects.filter(customer=request.user)
+
+    bills = Bill.objects.filter(customer=request.user).prefetch_related(
+        Prefetch('billitem_set', queryset=BillItem.objects.select_related('accessory'))
+    )
 
     if request.method == "POST":
         if "delete_account" in request.POST:
@@ -239,31 +244,26 @@ def update_cart(request, product_id):
 def checkout(request):
     user = request.user
     cart_items = CartItem.objects.filter(user=user)
-    
-    total_cost = 0
-    for item in cart_items:
-        total_cost += item.total_cost
-    
+
+    new_bill = Bill.objects.create(customer=user, total_cost=0, created_at=timezone.now())
+
     for item in cart_items:
         if item.accessory.p_count >= item.quantity:
             item.accessory.p_count -= item.quantity
             item.accessory.save()
+            BillItem.objects.create(
+                bill=new_bill,
+                accessory=item.accessory,
+                quantity=item.quantity,               
+            )
+            new_bill.total_cost += item.total_cost
 
-        new_bill = Bill(
-            customer=user,
-            total_cost=item.total_cost,
-            created_at=timezone.now(), 
-            quantity=item.quantity, 
-            accessory=item.accessory,
-        )
-        new_bill.save()
-    messages.success(request, "Checkout successful.")
+    new_bill.save()
     cart_items.delete()
-    
-    context ={
-        'bill_items': cart_items
-        }
-
+    messages.success(request, "Checkout successful.")   
+    context = {
+        'new_bill': new_bill,
+    }
     return render(request, 'checkout.html', context)
 
 def appointment(request):

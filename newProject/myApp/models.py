@@ -58,18 +58,20 @@ class CartItem(models.Model):
     quantity = models.IntegerField(default=1)
     total_cost = models.IntegerField(null = True)
     
-    
 class Bill(models.Model):
     def __str__(self):
-        return self.customer.username
+        return f"{self.customer.username} - {self.created_at}"
     
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(default=timezone.now)
-    accessory = models.ForeignKey(MedicalAccessories, on_delete=models.CASCADE)
+    accessories = models.ManyToManyField(MedicalAccessories, through='BillItem')
 
-    
+class BillItem(models.Model):
+    bill = models.ForeignKey(Bill, on_delete=models.CASCADE)
+    accessory = models.ForeignKey(MedicalAccessories, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+
 class Doctor(models.Model): 
     def __str__(self):
         return self.name
