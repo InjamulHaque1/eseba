@@ -1,7 +1,7 @@
 from django import forms
 from myApp.models import UserProfile
 from django.contrib.auth.models import User
-from captcha.fields import ReCaptchaField
+from django_recaptcha.fields import ReCaptchaField
 
 class UserProfileForm(forms.ModelForm):
     class Meta:

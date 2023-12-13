@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myApp',
-    'captcha',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [

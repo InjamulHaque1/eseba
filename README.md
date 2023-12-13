@@ -1,14 +1,13 @@
 # eseba dependencies
-    Package          Version
-    ---------------- -------
-    python           3.12.0
-    asgiref          3.7.2
-    Django           4.2.6
-    django-recaptcha 3.0.0
-    Pillow           10.0.1
-    pip              23.3.1
-    sqlparse         0.4.4
-    tzdata           2023.3
+  Package          Version
+  ---------------- -------
+  asgiref          3.7.2
+  Django           5.0    ----> (install needed)
+  django-recaptcha 4.0.0  ----> (install needed)
+  Pillow           10.1.0 ----> (install needed)
+  pip              23.3.1
+  sqlparse         0.4.4
+  tzdata           2023.3
 
 
 -----Error handling-----
@@ -19,21 +18,21 @@
 -----User-----
   1.	Registration (capctha)
   2.	Login (captcha)
-  3.	Edit (UserProfile and User)
-  4.	Delete (UserProfile and User)
+  3.	Edit profile
+  4.	Delete profile
   5.	Appointment History
   6.	Payment History
 
 
 -----Product-----
   1.	Search
-  2.	Buy (multiple add)
+  2.	Buy 
   3.	Cart (update, remove)
   4.	Checkout
 
 
 -----Appointment-----
-  1.	Search doctors(status, name, speciality)
+  1.	Search doctors
   2.	Register
   3.	Cancel (in profile)
   4.	Support for unavailable doctors
