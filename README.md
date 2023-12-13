@@ -10,6 +10,21 @@
 	  sqlparse         0.4.4
 	  tzdata           2023.3
 
+	Step 1: Remove all packages via pip(WARNING!!!! THIS WILL REMOVE ALL OF THE PACKAGES INSTALLED)
+		pip freeze | xargs pip uninstall -y
+  
+		If 'xargs' is not recognised:
+		pip freeze | ForEach-Object { pip uninstall -y $_.split('=')[0] }
+  
+		Method 2:
+		pip freeze | ForEach-Object { pip uninstall -y ($_ -split '=')[0].Trim() }
+  
+		Method 3(Worked for me):
+		for /f "tokens=1,* delims=^=" %i in ('pip freeze') do pip uninstall -y %i
+  
+	Step 2:
+	  	Install the mentioned packages from the avobe list
+
 
 -----Error handling-----
   1. Undefined path
