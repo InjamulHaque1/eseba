@@ -1,13 +1,14 @@
 # eseba dependencies
-  Package          Version
-  ---------------- -------
-  asgiref          3.7.2
-  Django           5.0    ----> (install needed)
-  django-recaptcha 4.0.0  ----> (install needed)
-  Pillow           10.1.0 ----> (install needed)
-  pip              23.3.1
-  sqlparse         0.4.4
-  tzdata           2023.3
+	
+	  Package          Version(or later)
+	  ------------------------------------
+	  asgiref          3.7.2
+	  Django           5.0 -------> (install needed)
+	  django-recaptcha 4.0.0 -----> (install needed)
+	  Pillow           10.1.0 ----> (install needed)
+	  pip              23.3.1
+	  sqlparse         0.4.4
+	  tzdata           2023.3
 
 
 -----Error handling-----
