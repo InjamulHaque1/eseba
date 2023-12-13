@@ -10,6 +10,10 @@
 	  sqlparse         0.4.4
 	  tzdata           2023.3
 
+	Install pip(if pip gets uninstalled):
+		1. curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+		2. python get-pip.py
+
 	Step 1: Remove all packages via pip(WARNING!!!! THIS WILL REMOVE ALL OF THE PACKAGES INSTALLED)
 		pip freeze | xargs pip uninstall -y
   
@@ -22,8 +26,8 @@
 		Method 3(Worked for me):
 		for /f "tokens=1,* delims=^=" %i in ('pip freeze') do pip uninstall -y %i
   
-	Step 2:
-	  	Install the mentioned packages from the avobe list
+	Step 2:	Install the mentioned packages from the avobe list
+ 		pip install django django-recaptcha pillow
 
 
 -----Error handling-----
